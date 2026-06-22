@@ -47,4 +47,10 @@ This makes the project closer to a production-style travel application rather th
 
 ---
 
-## 📂 Project Structure
+## Project Structure
+
+models/
+routes/
+views/
+seeds/
+app.js
