@@ -42,9 +42,14 @@ app.post('/campgrounds', async (req, res) => {
 })
 
 app.get('/campgrounds/:id', async (req, res) => {
-    const campground = await Campground.findById(req.params.id)
+    const campground = await Campground.findById(req.params.id);
+
+    if (!campground) {
+        return res.send('Campground not found');
+    }
+
     res.render('campgrounds/show', { campground });
-})
+});
 
 app.get('/campgrounds/:id/edit', async (req, res) => {
     const campground = await Campground.findById(req.params.id)
