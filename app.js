@@ -7,6 +7,7 @@ const catchAsync = require('./utilities/catchAsync');
 const ExpressError = require('./utilities/ExpressErrors');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
+const Review = require('./models/review');
 
 mongoose.connect('mongodb://127.0.0.1:27017/camp-navi')
     .then(() => {
@@ -85,6 +86,18 @@ app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
     if (!campground) return res.status(404).send('Campground not found');
     res.redirect('/campgrounds');
 }));
+
+app.post('/campgrounds/:id/reviews', catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    const review = new Review(req.body.review);
+    campground.reviews.push(review);
+    await review.save();
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
+
+}))
+
+
 
 app.all('/{*path}', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
