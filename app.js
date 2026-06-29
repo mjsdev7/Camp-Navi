@@ -89,11 +89,13 @@ app.put('/campgrounds/:id', validateCampground, catchAsync(async (req, res) => {
     res.redirect(`/campgrounds/${campground._id}`);
 }));
 
-app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const campground = await Campground.findByIdAndDelete(id);
-    if (!campground) return res.status(404).send('Campground not found');
-    res.redirect('/campgrounds');
+app.delete('/campgrounds/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Campground.findByIdAndUpdate(id, {
+        $pull: { reviews: reviewId }
+    });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/campgrounds/${id}`);
 }));
 
 app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async (req, res) => {
@@ -106,6 +108,13 @@ app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async (req, res)
     res.redirect(`/campgrounds/${campground._id}`);
 
 }))
+
+app.delete('/campgrounds/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { id, review } = req.params;
+    await Campground.findByIdAndUpdate(id, { $pull: { review: reviewId } })
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/campgrounds/${id}`);
+}));
 
 
 
