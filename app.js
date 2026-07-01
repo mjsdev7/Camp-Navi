@@ -10,30 +10,38 @@ const flash = require('connect-flash');
 const campgrounds = require('./routes/campgrounds');
 const reviews = require('./routes/reviews');
 
+// DB
 mongoose.connect('mongodb://127.0.0.1:27017/camp-navi')
     .then(() => console.log('Database connected'))
     .catch(err => console.log('connection error:', err));
 
 const app = express();
 
+// view engine setup
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// session + flash MUST be before routes
-app.use(session({
-    secret: 'campnavi secret',
+// session config
+const sessionConfig = {
+    secret: 'thisshouldbeabettersecret!',
     resave: false,
-    saveUninitialized: false
-}));
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+};
 
+app.use(session(sessionConfig));
 app.use(flash());
 
-// flash locals
+// flash locals (ONLY ONCE — important fix)
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
@@ -44,6 +52,7 @@ app.use((req, res, next) => {
 app.use('/campgrounds', campgrounds);
 app.use('/campgrounds/:id/reviews', reviews);
 
+// home route
 app.get('/', (req, res) => {
     res.render('home');
 });
@@ -60,6 +69,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 });
 
+// server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Serving on port ${PORT}`);

@@ -7,18 +7,21 @@ const ExpressError = require('../utilities/ExpressErrors');
 const Campground = require('../models/campground');
 
 
+// VALIDATION MIDDLEWARE
 const validateCampground = (req, res, next) => {
-    const { error } = campgroundSchema.validate(req.body.campground);
+    console.log("🔥 VALIDATION RUNNING");
+
+    const { error } = campgroundSchema.validate(req.body);
 
     if (error) {
-        const msg = error.details.map(el => el.message).join(',');
-        req.flash('error', msg);
-
-        return res.redirect(`/campgrounds/${req.params.id}/edit`);
+        console.log("❌ VALIDATION FAILED:", error.message);
+        req.flash('error', error.message);
+        return res.redirect('/campgrounds/new');
     }
 
     next();
 };
+
 
 // INDEX
 router.get('/', catchAsync(async (req, res) => {
@@ -62,6 +65,8 @@ router.get('/:id', catchAsync(async (req, res) => {
 
 // EDIT
 router.get('/:id/edit', catchAsync(async (req, res) => {
+    console.log("REQ PARAM ID:", req.params.id);
+
     const campground = await Campground.findById(req.params.id);
 
     if (!campground) {
@@ -74,7 +79,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
 
 
 // UPDATE
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', async (req, res) => {
     try {
         const campground = await Campground.findByIdAndUpdate(
             req.params.id,
@@ -85,10 +90,17 @@ router.put('/:id', async (req, res, next) => {
             }
         );
 
+        if (!campground) {
+            req.flash('error', 'Campground not found!');
+            return res.redirect('/campgrounds');
+        }
+
         req.flash('success', 'Successfully updated campground!');
-        res.redirect(`/campgrounds/${campground._id}`);
+        return res.redirect(`/campgrounds/${campground._id}`);
+
     } catch (e) {
-        res.render('campgrounds/edit', { campground: req.body.campground, error: e.message });
+        req.flash('error', e.message);
+        return res.redirect(`/campgrounds/${req.params.id}/edit`);
     }
 });
 

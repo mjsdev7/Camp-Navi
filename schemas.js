@@ -4,7 +4,14 @@ module.exports.campgroundSchema = Joi.object({
     campground: Joi.object({
         title: Joi.string().required(),
         price: Joi.number().required().min(0),
-        image: Joi.string().uri().required(),
+        image: Joi.string()
+            .uri()
+            .required()
+            .messages({
+                'string.empty': 'Image URL is required',
+                'string.uri': 'Please enter a valid image URL (must start with http:// or https://)',
+                'any.required': 'Image is required'
+            }),
         location: Joi.string().required(),
         description: Joi.string().required(),
 
