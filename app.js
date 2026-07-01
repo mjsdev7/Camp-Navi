@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use('/campgrounds', campgrounds);
-app.use('/campgrounds', reviews);
+app.use('/campgrounds/:id/reviews', reviews);
 
 app.get('/', (req, res) => {
     res.render('home');
