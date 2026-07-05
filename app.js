@@ -10,9 +10,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
+const userRoutes = require('./routes/users');
+const campgroundRoutes = require('./routes/campgrounds');
+const reviewRoutes = require('./routes/reviews');
 
-const campgrounds = require('./routes/campgrounds');
-const reviews = require('./routes/reviews');
 
 // DB
 mongoose.connect('mongodb://127.0.0.1:27017/camp-navi')
@@ -59,19 +60,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/fakeUser', async (req, res) => {
-    const user = new User({
-        email: 'mattt@outlook.com',
-        username: 'mattt1'
-    });
-
-    const newUser = await User.register(user, 'chicken');
-    res.send(newUser);
-});
 
 // routes
-app.use('/campgrounds', campgrounds);
-app.use('/campgrounds/:id/reviews', reviews);
+app.use('/', userRoutes);
+app.use('/campgrounds', campgroundRoutes);
+app.use('/campgrounds/:id/reviews', reviewRoutes);
 
 // home route
 app.get('/', (req, res) => {
