@@ -65,7 +65,7 @@ router.get('/:id', catchAsync(async (req, res) => {
 
 
 // EDIT
-router.get('/:id/edit', catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
     console.log("REQ PARAM ID:", req.params.id);
 
     const campground = await Campground.findById(req.params.id);
@@ -80,7 +80,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
 
 
 // UPDATE
-router.put('/:id', async (req, res) => {
+router.put('/:id', isLoggedIn, async (req, res) => {
     try {
         const campground = await Campground.findByIdAndUpdate(
             req.params.id,
@@ -107,7 +107,7 @@ router.put('/:id', async (req, res) => {
 
 
 // DELETE
-router.delete('/:id', catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
 
     await Campground.findByIdAndDelete(id);
