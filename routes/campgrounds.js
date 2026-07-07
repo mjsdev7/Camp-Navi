@@ -40,7 +40,7 @@ router.get('/new', isLoggedIn, (req, res) => {
 // CREATE
 router.post(
     '/',
-    validateCampground,
+    isLoggedIn, validateCampground,
     catchAsync(async (req, res) => {
         const campground = new Campground(req.body.campground);
         await campground.save();
@@ -52,7 +52,7 @@ router.post(
 
 
 // SHOW
-router.get('/:id', catchAsync(async (req, res) => {
+router.get('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id).populate('reviews');
 
     if (!campground) {
