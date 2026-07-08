@@ -8,11 +8,18 @@ const campgroundSchema = new Schema({
     price: Number,
     description: String,
     location: String,
+
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+
     reviews: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Review'
-        }]
+        }
+    ]
 });
 
 campgroundSchema.post('findOneAndDelete', async function (doc) {
@@ -21,8 +28,8 @@ campgroundSchema.post('findOneAndDelete', async function (doc) {
             _id: {
                 $in: doc.reviews
             }
-        })
+        });
     }
-})
+});
 
 module.exports = mongoose.model('Campground', campgroundSchema);
