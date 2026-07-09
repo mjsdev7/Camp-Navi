@@ -15,7 +15,8 @@ router.route('/login')
     .post(
         storeReturnTo,
         passport.authenticate('local', {
-            failureFlash: true, failureRedirect: '/login'
+            failureFlash: true,
+            failureRedirect: '/login'
         }),
         users.login
     );
