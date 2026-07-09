@@ -5,25 +5,24 @@ const catchAsync = require('../utilities/catchAsync');
 const { isLoggedIn, validateCampground, isAuthor } = require('../middleware');
 const Campground = require('../models/campground');
 
-// INDEX
-router.get('/', catchAsync(campgrounds.index));
+router.route('/')
+    // INDEX
+    .get(catchAsync(campgrounds.index))
+    //CREATE
+    .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
 
 // NEW
 router.get('/new', isLoggedIn, campgrounds.renderNewForm);
 
-// CREATE
-router.post('/', isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
-
-// SHOW
-router.get('/:id', catchAsync(campgrounds.showCampground));
+router.route('/:id')
+    // SHOW
+    .get(catchAsync(campgrounds.showCampground))
+    // UPDATE
+    .put(isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampgrounds))
+    // DELETE
+    .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
 // EDIT
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm));
-
-// UPDATE
-router.put('/:id', isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampgrounds));
-
-// DELETE
-router.delete('/:id', isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
 module.exports = router;
