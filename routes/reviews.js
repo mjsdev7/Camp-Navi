@@ -7,7 +7,7 @@ const { isLoggedIn, validateReview, isReviewAuthor } = require('../middleware');
 const ExpressError = require('../utilities/ExpressErrors');
 const catchAsync = require('../utilities/catchAsync');
 
-router.post('/', isLoggedIn, validateReview, catchAsync(reviews.createReviews));
+router.post('/', isLoggedIn, validateReview, catchAsync(reviews.createReview));
 
 router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(reviews.deleteReview));
 
