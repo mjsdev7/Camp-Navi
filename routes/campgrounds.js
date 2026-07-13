@@ -12,10 +12,8 @@ router.route('/')
     // INDEX
     .get(catchAsync(campgrounds.index))
     //CREATE
-    // .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
-    .post(upload.array('image'), (req, res) => {
-        res.send(req.body, req.files)
-    })
+    .post(isLoggedIn, upload.array('image'), validateCampground, catchAsync(campgrounds.createCampground));
+
 
 // NEW
 router.get('/new', isLoggedIn, campgrounds.renderNewForm);
