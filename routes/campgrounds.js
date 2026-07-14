@@ -22,7 +22,7 @@ router.route('/:id')
     // SHOW
     .get(catchAsync(campgrounds.showCampground))
     // UPDATE
-    .put(isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampgrounds))
+    .put(isLoggedIn, isAuthor, upload.array('image'), validateCampground, catchAsync(campgrounds.updateCampgrounds))
     // DELETE
     .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
