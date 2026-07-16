@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Campground = require('../models/campground');
 const campgrounds = require('../campgrounds');
 
-mongoose.connect('mongodb://127.0.0.1:27017/camp-navi')
+mongoose.connect('mongodb://127.0.0.1:27017/camp-navi-maptiler')
     .then(() => {
         console.log("DB CONNECTED");
     })
