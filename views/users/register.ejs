@@ -1,9 +1,15 @@
 <% layout ('layouts/boilerplate') %>
-    <h1>Sign Up</h1>
-    <form action="/register" method="post" class="validated-form" novalidate>
+<div class="container d-flex justify-content-center align-items-center" style="margin-top: -2rem;">
+    <div class="row w-100">
+       <div class="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+            <div class="card shadow p-3">
+                <img src="https://images.unsplash.com/photo-1508873696983-2dfd5898f08b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                alt="" class="card-img-top">
+                    <h4 class="card-title">Sign Up</h4>
+                     <form action="/register" method="post" class="validated-form" novalidate>
         <div class="mb-3">
             <label class="form-label" for="Username">Username</label>
-            <input class="form-control" type="text" id="Username" name="username" required>
+            <input class="form-control" type="text" id="Username" name="username" autofocus required>
             <div class="valid-feedback">Look Good!</div>
         </div>
         <div class="mb-3">
@@ -16,5 +22,12 @@
             <input class="form-control" type="password" id="password" name="password" required>
             <div class="valid-feedback">Look Good!</div>
         </div>
-        <button class="btn btn-success">Register</button>
+        <button class="btn btn-success w-100">Login</button>
     </form>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+   
