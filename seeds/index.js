@@ -24,7 +24,7 @@ const seedDB = async () => {
         await Campground.create({
             title: camp.name,
             location: camp.location,
-            author: '6a4de9c7b073d86098b6c765',
+            author: '6a5884e70a35b8d5f383eabb',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum repudiandae magnam odio unde voluptate iste ipsa? Neque assumenda fugiat illum quibusdam sed eaque, quia placeat laudantium iusto iure. Laudantium, sequi.',
             price: price,
             images: [
