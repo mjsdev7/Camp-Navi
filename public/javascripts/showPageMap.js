@@ -10,7 +10,7 @@ const maptilerApiKey = window.maptilerApiKey;
 maptilersdk.config.apiKey = maptilerApiKey;
 
 const map = new maptilersdk.Map({
-    container: 'map',
+    container: 'cluster-map',
     style: maptilersdk.MapStyle.BRIGHT,
     center: campground.geometry.coordinates,
     zoom: 10
