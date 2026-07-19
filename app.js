@@ -18,6 +18,7 @@ const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require ('helmet');
 
 
 // DB
@@ -26,6 +27,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/camp-navi-maptiler')
     .catch(err => console.log('connection error:', err));
 
 const app = express();
+
+app.use(helmet({ contentSecurityPolicy: false }));
+console.log('Helmet loaded');
 
 // view engine setup
 app.engine('ejs', ejsMate);
