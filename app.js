@@ -39,11 +39,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // session config
 const sessionConfig = {
+    name: 'session',
     secret: 'thisshouldbeabettersecret!',
     resave: false,
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
+        //secure: true,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 };
