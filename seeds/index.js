@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 console.log("SEED SCRIPT STARTED");
 
 const mongoose = require('mongoose');
 const Campground = require('../models/campground');
 const campgrounds = require('../campgrounds');
 
-mongoose.connect('mongodb://127.0.0.1:27017/camp-navi-maptiler')
+mongoose.connect(process.env.DB_URL)
     .then(() => {
         console.log("DB CONNECTED");
     })
@@ -25,8 +27,8 @@ const seedDB = async () => {
             title: camp.name,
             location: camp.location,
             author: '6a5884e70a35b8d5f383eabb',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum repudiandae magnam odio unde voluptate iste ipsa? Neque assumenda fugiat illum quibusdam sed eaque, quia placeat laudantium iusto iure. Laudantium, sequi.',
-            price: price,
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+            price,
             images: [
                 {
                     url: 'https://res.cloudinary.com/tf6igb12/image/upload/v1783937394/CampNavi/shkxrqrpcwtiroejkqhm.jpg',
