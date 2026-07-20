@@ -9,6 +9,7 @@ const ejsMate = require('ejs-mate');
 const ExpressError = require('./utilities/ExpressErrors');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const { MongoStore } = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -45,9 +46,19 @@ const connectSrcUrls = [
 const fontSrcUrls = [];
 
 // DB
-mongoose.connect(process.env.DB_URL)
+const dbUrl = process.env.DB_URL;
+
+mongoose.connect(dbUrl)
     .then(() => console.log('Database connected'))
     .catch(err => console.log('connection error:', err));
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: 'thisshouldbeabettersecret!'
+    }
+});
 
 const app = express();
 
@@ -102,13 +113,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // session config
 const sessionConfig = {
+    store,
     name: 'session',
     secret: 'thisshouldbeabettersecret!',
     resave: false,
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        //secure: true,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 };
