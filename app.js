@@ -45,7 +45,7 @@ const connectSrcUrls = [
 const fontSrcUrls = [];
 
 // DB
-mongoose.connect('mongodb://127.0.0.1:27017/camp-navi-maptiler')
+mongoose.connect(process.env.DB_URL)
     .then(() => console.log('Database connected'))
     .catch(err => console.log('connection error:', err));
 
