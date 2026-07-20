@@ -47,12 +47,14 @@ const connectSrcUrls = [
 
 const fontSrcUrls = [];
 
+
 // DB
 const dbUrl = process.env.DB_URL;
 
 mongoose.connect(dbUrl)
     .then(() => console.log('Database connected'))
     .catch(err => console.log('connection error:', err));
+
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -62,7 +64,9 @@ const store = MongoStore.create({
     }
 });
 
+
 const app = express();
+
 
 app.use(
     helmet.contentSecurityPolicy({
@@ -103,15 +107,22 @@ app.use(
     })
 );
 
+
 // view engine setup
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// favicon fix
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 
 // session config
 const sessionConfig = {
@@ -126,12 +137,14 @@ const sessionConfig = {
     }
 };
 
+
 app.use(session(sessionConfig));
 
 app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user || null;
@@ -146,15 +159,18 @@ app.use('/', userRoutes);
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/reviews', reviewRoutes);
 
+
 // home route
 app.get('/', (req, res) => {
     res.render('home');
 });
 
+
 // 404 handler
 app.all(/.*/, (req, res, next) => {
     next(new ExpressError('Page Not Found', 404));
 });
+
 
 // error handler
 app.use((err, req, res, next) => {
@@ -162,6 +178,7 @@ app.use((err, req, res, next) => {
     if (!err.message) err.message = 'Oh No, Something Went Wrong!';
     res.status(statusCode).render('error', { err });
 });
+
 
 // server
 module.exports = app;
