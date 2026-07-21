@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (savedTheme === "dark") {
         document.body.classList.add("dark-mode");
         themeToggle.textContent = "Light Mode";
+    } else {
+        themeToggle.textContent = "Dark Mode";
     }
 
 
