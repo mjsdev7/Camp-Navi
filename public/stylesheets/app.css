@@ -7,3 +7,57 @@
      width: 100%;
      height: 300px;
 }
+
+#cluster-map {
+    width: 100%;
+    height: 500px;
+}
+
+#map {
+    width: 100%;
+    height: 300px;
+}
+
+
+/* Dark Mode */
+
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    color: white;
+    border-color: #333;
+}
+
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode p,
+.dark-mode label {
+    color: white;
+}
+
+
+.dark-mode .form-control {
+    background-color: #222;
+    color: white;
+    border-color: #555;
+}
+
+
+.dark-mode .navbar {
+    background-color: #000 !important;
+}
+
+
+.dark-mode footer {
+    background-color: #000;
+    color: white;
+}
