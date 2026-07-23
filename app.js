@@ -184,4 +184,8 @@ app.use((err, req, res, next) => {
 
 
 // server
-module.exports = app;
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`);
+});
