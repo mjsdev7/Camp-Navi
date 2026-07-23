@@ -61,3 +61,8 @@
     background-color: #000;
     color: white;
 }
+
+.campground-image {
+    height: 400px;
+    object-fit: cover;
+}
