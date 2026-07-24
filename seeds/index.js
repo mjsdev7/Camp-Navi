@@ -8,23 +8,15 @@ const mongoose = require('mongoose');
 const Campground = require('../models/campground');
 const campgrounds = require('../campgrounds');
 
-mongoose.connect(process.env.DB_URL)
-    .then(() => {
-        console.log("DB CONNECTED");
-    })
-    .catch(err => {
-        console.log("DB ERROR:", err);
-    });
-
 const seedDB = async () => {
     console.log("DELETING OLD DATA");
     await Campground.deleteMany({});
 
-  for (const camp of campgrounds) {
-    console.log("ADDING:", camp.name);
-    console.log("DESCRIPTION:", descriptions[camp.name]);
+    for (const camp of campgrounds) {
+        console.log("ADDING:", camp.name);
+        console.log("DESCRIPTION:", descriptions[camp.name]);
 
-        const price = Math.floor(Math.random() * 20) + 10;
+        const price = (Math.floor(Math.random() * 8) + 3) * 500;
 
         await Campground.create({
             title: camp.name,
@@ -33,8 +25,8 @@ const seedDB = async () => {
             description: descriptions[camp.name],
             price,
             images: [
-    images[camp.name]
-],
+                images[camp.name]
+            ],
             geometry: {
                 type: "Point",
                 coordinates: [camp.longitude, camp.latitude]
@@ -45,7 +37,11 @@ const seedDB = async () => {
     console.log("SEED COMPLETE");
 };
 
-seedDB()
+mongoose.connect(process.env.DB_URL)
+    .then(() => {
+        console.log("DB CONNECTED");
+        return seedDB();
+    })
     .then(() => {
         mongoose.connection.close();
         console.log("DB CLOSED");
