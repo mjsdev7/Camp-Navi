@@ -1,79 +1,167 @@
 # Camp-Navi
 
-Camp-Navi is a full-stack web application for discovering, creating, and managing campground listings. It allows users to browse real camping locations, view detailed information, and contribute their own campgrounds. The project is built with Node.js, Express, MongoDB, and EJS using server-side rendering.
+Camp-Navi is a full-stack campground listing web application that allows users to browse, create, update, and delete camping locations.
+
+This project was built as a personal full-stack web development project using Node.js, Express, MongoDB, and EJS. It focuses on backend development, database design, RESTful routing, and building a complete MVC-style web application.
+
+Camp-Navi allows users to discover, create, and manage campground listings. Users can browse real campground locations across Japan, view detailed campground pages, and contribute their own campground entries.
 
 ## Features
 
-- Browse campground listings from a database
-- View detailed campground pages with image, price, and location
-- Create new campground entries
-- Edit and delete existing campgrounds
-- Persistent data storage with MongoDB
-- Server-rendered UI using EJS templates
-- Seed script to populate database with initial data
+* Full CRUD functionality (Create, Read, Update, Delete campgrounds)
+* Browse campground listings from a database
+* View detailed campground pages with images, pricing, descriptions, and locations
+* Create new campground entries
+* Edit and delete existing campgrounds
+* MongoDB database integration using Mongoose
+* Server-side rendering with EJS templates
+* Form handling and validation
+* Error handling for routes and database operations
+* Organized MVC-style application structure
+* Real campground locations across Japan
+* Clean user interface using Bootstrap
+* Database seed script for initial campground data
 
 ## Tech Stack
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- EJS
-- Bootstrap
-- HTML / CSS
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* EJS
+* Bootstrap
+* Cloudinary
+* HTML
+* CSS
+
+## Project Focus
+
+Camp-Navi uses real campground locations instead of placeholder data, creating a realistic travel application experience.
+
+Each campground listing includes:
+
+* Title
+* Image
+* Price
+* Description
+* Location
+* Geographic coordinates
 
 ## Project Architecture
 
-- **app.js**: Main application entry point and routing
-- **models/**: MongoDB schema definitions (Mongoose)
-- **views/**: EJS templates for frontend rendering
-- **seeds/**: Database seed script for sample data
+```
+Camp-Navi/
+
+├── models/
+│   └── MongoDB schema definitions
+
+├── routes/
+│   └── Express route handlers
+
+├── controllers/
+│   └── Application logic
+
+├── views/
+│   └── EJS templates for server-side rendering
+
+├── seeds/
+│   ├── index.js
+│   ├── images.js
+│   └── descriptions.js
+
+├── app.js
+└── package.json
+```
 
 ## Data Model
 
-Each campground includes:
+Each campground contains:
 
-- Title
-- Image URL
-- Price
-- Description
-- Location
+* Title
+* Image URL
+* Price
+* Description
+* Location
+* Author
+* Reviews
+* Geometry coordinates
 
 ## Setup Instructions
 
-1. Clone the repository
-   git clone https://github.com/mjsdev7/Camp-Navi.git
+### 1. Clone the repository
 
-2. Install dependencies
-   npm install
+```bash
+git clone https://github.com/mjsdev7/Camp-Navi.git
+```
 
-3. Start MongoDB locally
+### 2. Install dependencies
 
-4. Seed the database (optional)
-   node seeds/index.js
+```bash
+npm install
+```
 
-5. Run the application
-   node app.js
+### 3. Environment Variables
 
-6. Open in browser
-   http://localhost:3000
+Create a `.env` file in the root directory:
+
+```
+DB_URL=your_mongodb_connection_string
+CLOUDINARY_CLOUD_NAME=your_cloudinary_name
+CLOUDINARY_KEY=your_cloudinary_key
+CLOUDINARY_SECRET=your_cloudinary_secret
+```
+
+Add your own values before running the application.
+
+### 4. Start MongoDB locally
+
+Make sure MongoDB is running on your machine.
+
+### 5. Seed the database (optional)
+
+```bash
+node seeds/index.js
+```
+
+This will populate the database with campground listings.
+
+### 6. Run the application
+
+```bash
+node app.js
+```
+
+### 7. Open the application
+
+Visit:
+
+```
+http://localhost:3000
+```
 
 ## Key Learnings
 
-- Building RESTful routing with Express
-- Working with MongoDB and Mongoose
-- Structuring a full-stack MVC application
-- Server-side rendering with EJS
-- CRUD operations with persistent storage
+* Building RESTful routes with Express
+* Working with MongoDB and Mongoose
+* Creating and structuring an MVC application
+* Server-side rendering with EJS
+* Implementing CRUD operations
+* Managing database relationships
+* Creating reusable seed data
+* Integrating Cloudinary image storage
+* Handling application errors
 
 ## Future Improvements
 
-- User authentication and authorization
-- Image upload system instead of static URLs
-- Search and filtering functionality
-- Map integration for campground locations
-- Reviews and ratings system
+* User authentication and authorization
+* User image uploads with Cloudinary integration
+* Search and filtering functionality
+* Interactive map integration
+* Reviews and ratings system
+* Improved campground recommendations
 
 ## Purpose
 
-This project demonstrates full-stack development skills using a real-world architecture pattern. It focuses on backend structure, database design, and dynamic server-rendered frontend development.
+This project demonstrates full-stack web development skills using a real-world application architecture.
+
+Camp-Navi focuses on backend structure, database design, RESTful routing, and dynamic server-rendered frontend development.
