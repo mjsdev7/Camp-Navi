@@ -2,6 +2,7 @@ require('dotenv').config();
 
 console.log("SEED SCRIPT STARTED");
 
+const images = require('./images');
 const mongoose = require('mongoose');
 const Campground = require('../models/campground');
 const campgrounds = require('../campgrounds');
@@ -30,15 +31,8 @@ const seedDB = async () => {
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
             price,
             images: [
-                {
-                    url: 'https://res.cloudinary.com/tf6igb12/image/upload/v1783937394/CampNavi/shkxrqrpcwtiroejkqhm.jpg',
-                    filename: 'CampNavi/shkxrqrpcwtiroejkqhm',
-                },
-                {
-                    url: 'https://res.cloudinary.com/tf6igb12/image/upload/v1783937395/CampNavi/vu04eqak3jhsws1dbupp.png',
-                    filename: 'CampNavi/vu04eqak3jhsws1dbupp',
-                }
-            ],
+    images[camp.name]
+],
             geometry: {
                 type: "Point",
                 coordinates: [camp.longitude, camp.latitude]
