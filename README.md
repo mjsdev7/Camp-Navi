@@ -2,6 +2,8 @@
 
 Camp-Navi is a full-stack campground listing web application that allows users to browse, create, update, and delete camping locations.
 
+**🌐 Live Demo:** https://camp-navi.vercel.app
+
 This project was built as a personal full-stack web development project using Node.js, Express, MongoDB, and EJS. It focuses on backend development, database design, RESTful routing, and building a complete MVC-style web application.
 
 Camp-Navi allows users to discover, create, and manage campground listings. Users can browse real campground locations across Japan, view detailed campground pages, and contribute their own campground entries.
