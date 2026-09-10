@@ -10,31 +10,37 @@ Camp-Navi allows users to discover, create, and manage campground listings. User
 
 ## Features
 
-* Full CRUD functionality (Create, Read, Update, Delete campgrounds)
-* Browse campground listings from a database
-* View detailed campground pages with images, pricing, descriptions, and locations
-* Create new campground entries
-* Edit and delete existing campgrounds
-* MongoDB database integration using Mongoose
-* Server-side rendering with EJS templates
-* Form handling and validation
-* Error handling for routes and database operations
-* Organized MVC-style application structure
-* Real campground locations across Japan
-* Clean user interface using Bootstrap
-* Database seed script for initial campground data
+- Full CRUD functionality (Create, Read, Update, Delete campgrounds)
+- Browse campground listings from a database
+- View detailed campground pages with images, pricing, descriptions, and locations
+- Create new campground entries
+- Edit and delete existing campgrounds
+- MongoDB database integration using Mongoose
+- Server-side rendering with EJS templates
+- Form handling and validation
+- Error handling for routes and database operations
+- Organized MVC-style application structure
+- Real campground locations across Japan
+- Clean user interface using Bootstrap
+- Database seed script for initial campground data
+
+## Screenshots
+
+### Homepage
+
+![Camp-Navi Homepage](screenshots/camp-navi-home.png)
 
 ## Tech Stack
 
-* Node.js
-* Express.js
-* MongoDB
-* Mongoose
-* EJS
-* Bootstrap
-* Cloudinary
-* HTML
-* CSS
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- EJS
+- Bootstrap
+- Cloudinary
+- HTML
+- CSS
 
 ## Project Focus
 
@@ -42,12 +48,12 @@ Camp-Navi uses real campground locations instead of placeholder data, creating a
 
 Each campground listing includes:
 
-* Title
-* Image
-* Price
-* Description
-* Location
-* Geographic coordinates
+- Title
+- Image
+- Price
+- Description
+- Location
+- Geographic coordinates
 
 ## Project Architecture
 
@@ -79,14 +85,14 @@ Camp-Navi/
 
 Each campground contains:
 
-* Title
-* Image URL
-* Price
-* Description
-* Location
-* Author
-* Reviews
-* Geometry coordinates
+- Title
+- Image URL
+- Price
+- Description
+- Location
+- Author
+- Reviews
+- Geometry coordinates
 
 ## Setup Instructions
 
@@ -143,24 +149,24 @@ http://localhost:3000
 
 ## Key Learnings
 
-* Building RESTful routes with Express
-* Working with MongoDB and Mongoose
-* Creating and structuring an MVC application
-* Server-side rendering with EJS
-* Implementing CRUD operations
-* Managing database relationships
-* Creating reusable seed data
-* Integrating Cloudinary image storage
-* Handling application errors
+- Building RESTful routes with Express
+- Working with MongoDB and Mongoose
+- Creating and structuring an MVC application
+- Server-side rendering with EJS
+- Implementing CRUD operations
+- Managing database relationships
+- Creating reusable seed data
+- Integrating Cloudinary image storage
+- Handling application errors
 
 ## Future Improvements
 
-* User authentication and authorization
-* User image uploads with Cloudinary integration
-* Search and filtering functionality
-* Interactive map integration
-* Reviews and ratings system
-* Improved campground recommendations
+- User authentication and authorization
+- User image uploads with Cloudinary integration
+- Search and filtering functionality
+- Interactive map integration
+- Reviews and ratings system
+- Improved campground recommendations
 
 ## Purpose
 
