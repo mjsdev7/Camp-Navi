@@ -34,6 +34,10 @@ Camp-Navi allows users to discover, create, and manage campground listings. User
 
 ![Camp-Navi All Campgrounds](screenshots/camp-navi-all-campgrounds.png)
 
+### Campground Details
+
+![Camp-Navi Campground Details](screenshots/camp-navi-campground-details.png)
+
 ## Tech Stack
 
 - Node.js
