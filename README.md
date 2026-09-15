@@ -6,9 +6,9 @@ Camp-Navi is a full-stack campground listing web application that allows users t
 
 The application was built as a personal full-stack development project, focusing on backend development, database design, RESTful routing, authentication, reviews, image management, and MVC application architecture.
 
-**🌐 Live Demo:** https://camp-navi.vercel.app
+** Live Demo:** https://camp-navi.vercel.app
 
-**💻 GitHub:** https://github.com/mjsdev7/Camp-Navi
+** GitHub:** https://github.com/mjsdev7/Camp-Navi
 
 ---
 
