@@ -1,21 +1,28 @@
-
-/* ==========================
-   GLOBAL FONTS
-========================== */
+/*
+==========================
+GLOBAL FONTS
+==========================
+*/
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
-/* ==========================
-   GLOBAL
-========================== */
+
+/*
+==========================
+GLOBAL
+==========================
+*/
 
 body {
     font-family: 'DM Sans', sans-serif;
 }
 
-/* ==========================
-   MAPS
-========================== */
+
+/*
+==========================
+MAPS
+==========================
+*/
 
 #cluster-map {
     width: 100%;
@@ -27,9 +34,12 @@ body {
     height: 300px;
 }
 
-/* ==========================
-   DARK MODE
-========================== */
+
+/*
+==========================
+DARK MODE
+==========================
+*/
 
 .dark-mode {
     background-color: #121212;
@@ -67,9 +77,12 @@ body {
     color: white;
 }
 
-/* ==========================
-   CAMPGROUND CARD IMAGES
-========================== */
+
+/*
+==========================
+CAMPGROUND CARD IMAGES
+==========================
+*/
 
 .campground-card-image-container {
     height: 260px;
@@ -83,9 +96,12 @@ body {
     display: block;
 }
 
-/* ==========================
-   CAMP NAVI NAVBAR
-========================== */
+
+/*
+==========================
+CAMP NAVI NAVBAR
+==========================
+*/
 
 .camp-navbar {
     background-color: #263b32;
@@ -104,9 +120,9 @@ body {
 .camp-brand {
     color: #f5f3ed !important;
     font-family: 'DM Sans', sans-serif;
-    font-size: 36px;
+    font-size: 27px;
     font-weight: 700;
-    letter-spacing: -2px;
+    letter-spacing: -1.5px;
     line-height: 1;
     text-decoration: none;
 }
@@ -179,9 +195,12 @@ body {
     box-shadow: none;
 }
 
-/* ==========================
-   CAMPGROUND FORM PAGES
-========================== */
+
+/*
+==========================
+CAMPGROUND FORM PAGES
+==========================
+*/
 
 .form-page {
     min-height: 75vh;
@@ -348,9 +367,12 @@ body {
     color: #263b32;
 }
 
-/* ==========================
-   SHARED FOOTER
-========================== */
+
+/*
+==========================
+SHARED FOOTER
+==========================
+*/
 
 .site-footer {
     width: 100%;
@@ -440,9 +462,12 @@ body {
     color: #fff;
 }
 
-/* ==========================
-   RESPONSIVE NAVBAR
-========================== */
+
+/*
+==========================
+RESPONSIVE NAVBAR
+==========================
+*/
 
 @media (max-width: 991px) {
     .camp-nav-links {
@@ -462,9 +487,12 @@ body {
     }
 }
 
-/* ==========================
-   RESPONSIVE FORMS
-========================== */
+
+/*
+==========================
+RESPONSIVE FORMS
+==========================
+*/
 
 @media (max-width: 600px) {
     .form-page {
@@ -494,13 +522,16 @@ body {
     }
 
     .camp-brand {
-        font-size: 30px;
+        font-size: 27px;
     }
 }
 
-/* ==========================
-   RESPONSIVE FOOTER
-========================== */
+
+/*
+==========================
+RESPONSIVE FOOTER
+==========================
+*/
 
 @media (max-width: 768px) {
     .site-footer {
