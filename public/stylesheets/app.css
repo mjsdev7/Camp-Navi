@@ -1,5 +1,11 @@
 
 /* ==========================
+   GLOBAL FONTS
+========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+/* ==========================
    MAPS
 ========================== */
 
@@ -12,7 +18,6 @@
     width: 100%;
     height: 300px;
 }
-
 
 /* ==========================
    DARK MODE
@@ -54,7 +59,6 @@
     color: white;
 }
 
-
 /* ==========================
    CAMPGROUND CARD IMAGES
 ========================== */
@@ -70,7 +74,6 @@
     object-fit: cover;
     display: block;
 }
-
 
 /* ==========================
    CAMP NAVI NAVBAR
@@ -164,9 +167,100 @@
     box-shadow: none;
 }
 
+/* ==========================
+   SHARED FOOTER
+========================== */
+
+.site-footer {
+    width: 100%;
+    flex-shrink: 0;
+    background: #192b23;
+    color: #fff;
+    padding: 65px 8% 25px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.site-footer .footer-main {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 65px;
+}
+
+.site-footer .footer-brand .brand {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    text-decoration: none;
+}
+
+.site-footer .footer-brand .brand span {
+    color: #c6a77b;
+}
+
+.site-footer .footer-brand p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+}
+
+.site-footer .footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.site-footer .footer-column h4 {
+    margin: 0 0 5px;
+    color: #d2b58e;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.site-footer .footer-column a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.site-footer .footer-column a:hover {
+    color: #fff;
+}
+
+.site-footer .footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 10px;
+}
+
+.site-footer .footer-bottom a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.site-footer .footer-bottom a:hover {
+    color: #fff;
+}
 
 /* ==========================
-   NAVBAR RESPONSIVE
+   RESPONSIVE NAVBAR
 ========================== */
 
 @media (max-width: 991px) {
@@ -184,5 +278,37 @@
 
     .camp-theme-toggle {
         margin-bottom: 5px;
+    }
+}
+
+/* ==========================
+   RESPONSIVE FOOTER
+========================== */
+
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 50px 7% 25px;
+    }
+
+    .site-footer .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px 25px;
+        padding-bottom: 45px;
+    }
+
+    .site-footer .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .site-footer .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 420px) {
+    .site-footer .footer-main {
+        gap: 35px 18px;
     }
 }
