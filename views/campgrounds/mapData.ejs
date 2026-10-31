@@ -1,0 +1,16 @@
+
+<script type="application/json" id="campgrounds-data">
+<%- JSON.stringify({
+    maptilerApiKey: process.env.MAPTILER_API_KEY,
+    campgrounds: {
+        type: "FeatureCollection",
+        features: campgrounds.map(campground => ({
+            type: "Feature",
+            geometry: campground.geometry,
+            properties: {
+                popUpMarkup: campground?.properties?.popUpMarkup
+            }
+        }))
+    }
+}) %>
+</script>

@@ -1,53 +1,134 @@
+
 <% layout('layouts/boilerplate') %>
 
-<div id="cluster-map"></div>
-    <h1>ALL CAMPGROUNDS</h1>
-    <div>
-        <a href="/campgrounds/new">Add Campground</a>
-    </div>
-    <% for (let campground of campgrounds){ %>
-        <div class="card mb-3">
-            <div class="row">
-               <div class="col-md-4">
-    <div class="campground-card-image-container">
-        <img class="campground-card-image" src="<%= campground.images[0].url %>" alt="">
-</div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <%= campground.title %>
-                        </h5>
-                        <p class="card-text">
-                            <%= campground.description %>
-                        </p>
-                        <p class="card-text">
-                            <small class="text-muted">
-                                <%= campground.location %>
-                            </small>
-                        </p>
-                        <a class="btn btn-primary" href="/campgrounds/<%= campground._id %>">
-                            View <%= campground.title %>
+<link rel="stylesheet" href="/stylesheets/explore.css">
+
+<div class="explore-page">
+
+    <!-- Page introduction -->
+    <section class="explore-header">
+        <div class="explore-heading">
+            <span class="explore-eyebrow">FIND YOUR NEXT ESCAPE</span>
+            <h1>Explore the outdoors.</h1>
+            <p>
+                Discover beautiful places to camp, unwind and reconnect with nature.
+            </p>
+        </div>
+
+        <a href="/campgrounds/new" class="explore-add-button">
+            <span>＋</span> Add a campground
+        </a>
+    </section>
+
+    <!-- Campground map -->
+    <section class="explore-map-section">
+        <div class="explore-section-heading">
+            <div>
+                <span class="explore-eyebrow">FIND YOUR PLACE</span>
+                <h2>Explore the map</h2>
+            </div>
+            <span class="explore-map-note">Select a marker to discover more</span>
+        </div>
+
+        <div id="cluster-map"></div>
+    </section>
+
+    <!-- Campground listings -->
+    <section class="explore-listings">
+
+        <div class="explore-section-heading">
+            <div>
+                <span class="explore-eyebrow">THE COLLECTION</span>
+                <h2>All campgrounds</h2>
+            </div>
+            <span class="explore-count">
+                <%= campgrounds.length %> places to discover
+            </span>
+        </div>
+
+        <% if (campgrounds.length === 0) { %>
+
+            <div class="explore-empty">
+                <h3>Your next adventure starts here.</h3>
+                <p>There are no campgrounds listed yet. Be the first to add one.</p>
+                <a href="/campgrounds/new" class="explore-add-button">
+                    Add a campground
+                </a>
+            </div>
+
+        <% } else { %>
+
+            <div class="explore-grid">
+
+                <% for (let campground of campgrounds) { %>
+
+                    <article class="explore-card">
+
+                        <a
+                            href="/campgrounds/<%= campground._id %>"
+                            class="explore-card-image-link"
+                        >
+                            <div class="explore-card-image">
+
+                                <% if (campground.images && campground.images.length > 0) { %>
+
+                                    <img
+                                        src="<%= campground.images[0].url %>"
+                                        alt="<%= campground.title %>"
+                                        loading="lazy"
+                                    >
+
+                                <% } else { %>
+
+                                    <div class="explore-image-placeholder">
+                                        <span>CAMPNAVI</span>
+                                    </div>
+
+                                <% } %>
+
+                                <span class="explore-card-label">CAMPGROUND</span>
+
+                            </div>
                         </a>
 
-                    </div>
-                </div>
+                        <div class="explore-card-content">
+
+                            <span class="explore-card-location">
+                                <%= campground.location %>
+                            </span>
+
+                            <h3>
+                                <a href="/campgrounds/<%= campground._id %>">
+                                    <%= campground.title %>
+                                </a>
+                            </h3>
+
+                            <p>
+                                <%= campground.description %>
+                            </p>
+
+                            <a
+                                href="/campgrounds/<%= campground._id %>"
+                                class="explore-card-link"
+                            >
+                                Discover campground <span>→</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                <% } %>
+
             </div>
-        </div>
+
         <% } %>
 
-        <%- "<script>" %>
-const maptilerApiKey = "<%- process.env.MAPTILER_API_KEY %>";
-const campgrounds = {
-  type: "FeatureCollection",
-  features: <%- JSON.stringify(
-    campgrounds.map(campground => ({
-      type: "Feature",
-      geometry: campground.geometry,
-      properties: { popUpMarkup: campground?.properties?.popUpMarkup }
-    }))
-  ) %>
-};
-<%- "</script>" %>
+    </section>
+
+</div>
+
+<!-- Map data and functionality -->
+<%- include('mapData') %>
 
 <script src="/javascripts/clusterMap.js"></script>
