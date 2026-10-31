@@ -1,34 +1,47 @@
-<nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">CAMPNAVI</a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-            aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg camp-navbar sticky-top">
+    <div class="container-fluid camp-navbar-container">
+
+        <a class="navbar-brand camp-brand" href="/">
+            CAMP<span>NAVI</span>
+        </a>
+
+        <button
+            class="navbar-toggler camp-navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
-            <div class="navbar-nav">
+            <div class="navbar-nav camp-nav-links">
                 <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/campgrounds">Campgrounds</a>
-                <a class="nav-link" href="/campgrounds/new">New Campgrounds</a>
+                <a class="nav-link" href="/campgrounds">Explore</a>
+                <a class="nav-link" href="/campgrounds/new">Add a Campground</a>
             </div>
 
-            <div class="navbar-nav ms-auto align-items-center">
-                <button id="themeToggle" class="btn btn-outline-light me-3" type="button">
+            <div class="navbar-nav ms-auto camp-nav-actions">
+
+                <button
+                    id="themeToggle"
+                    class="camp-theme-toggle"
+                    type="button">
                     Dark Mode
                 </button>
 
                 <% if (!locals.currentUser) { %>
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/register">Sign Up</a>
+                    <a class="nav-link camp-login" href="/login">Log in</a>
+                    <a class="camp-signup" href="/register">Sign up</a>
                 <% } else { %>
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link camp-login" href="/logout">Log out</a>
                 <% } %>
-            </div>
 
+            </div>
         </div>
     </div>
 </nav>
