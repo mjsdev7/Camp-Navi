@@ -1,54 +1,76 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampNavi</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <title>Camp Navi — Find Your Place in the Wild</title>
+    <meta name="description" content="Discover Japan's beautiful campsites. Find your next outdoor adventure with Camp Navi.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
 
-<body class="d-flex text-center text-white bg-dark">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="mb-auto">
-            <div>
-                <h3 class="float-md-left mb-0">CampNavi</h3>
-                <nav class="nav nav-masthead justify-content-center float-md-right">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="/campgrounds">Campgrounds</a>
-                    <% if(!currentUser) { %>
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/register">Sign Up</a>
-                    <% } else { %>
-                    <a class="nav-link" href="/logout">Logout</a>
-                    <% } %>
-                </nav>
-            </div>
+<body>
+    <div class="hero">
+        <header class="site-header">
+            <a href="/" class="brand">camp<span>navi.</span></a>
+
+            <nav class="main-nav">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/campgrounds" class="nav-link">Explore</a>
+                <% if (!currentUser) { %>
+                    <a href="/login" class="nav-link">Login</a>
+                    <a href="/register" class="nav-cta">Join Camp Navi <span>↗</span></a>
+                <% } else { %>
+                    <a href="/logout" class="nav-link">Logout</a>
+                <% } %>
+            </nav>
+
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+            </button>
         </header>
-        <main class="px-3">
-            <h1>CampNavi</h1>
-            <p class="lead"> Welcome to CampNavi! <br> Explore Japan's great outdoors, one campsite at a time. <br>
-               Share your campsite experiences, leave reviews, and inspire others.</p>
-            <a href="/campgrounds" class="btn btn-lg btn-secondary font-weight-bold border-white bg-white">View
-                Campgrounds</a>
+
+        <main class="hero-content">
+            <p class="eyebrow"><span></span> YOUR NEXT ADVENTURE STARTS HERE</p>
+
+            <h1>Find your place<br>in the <em>wild.</em></h1>
+
+            <p class="hero-description">
+                From quiet forest hideaways to lakeside views beneath Mount Fuji.
+                Discover the beauty of camping in Japan.
+            </p>
+
+            <a href="/campgrounds" class="explore-button">
+                Explore campgrounds
+                <span class="button-arrow">↗</span>
+            </a>
+
+            <div class="hero-location">
+                <span class="location-line"></span>
+                <span>DISCOVER THE OUTDOORS · JAPAN</span>
+            </div>
         </main>
 
-        <footer class="mt-auto text-white-50">
-            <p>&copy; CampNavi 2026 </p>
-        </footer>
-
-
+        <div class="hero-bottom">
+            <span class="scroll-label">SCROLL TO EXPLORE</span>
+            <span class="scroll-line"></span>
+            <span class="hero-index">01 / 04</span>
+        </div>
     </div>
 
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navigation = document.querySelector('.main-nav');
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-        crossorigin="anonymous"></script>
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navigation.classList.toggle('nav-open');
+            menuToggle.classList.toggle('menu-open', isOpen);
+            menuToggle.setAttribute('aria-expanded', isOpen);
+        });
+    </script>
 </body>
-
 </html>
