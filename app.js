@@ -1,3 +1,4 @@
+
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config({ quiet: true });
 }
@@ -14,13 +15,14 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+const Campground = require('./models/campground');
 
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
+
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
-
 
 const scriptSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
@@ -47,14 +49,12 @@ const connectSrcUrls = [
 
 const fontSrcUrls = [];
 
-
 // DB
 const dbUrl = process.env.DB_URL;
 
 mongoose.connect(dbUrl)
     .then(() => console.log('Database connected'))
     .catch(err => console.log('connection error:', err));
-
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -64,9 +64,7 @@ const store = MongoStore.create({
     }
 });
 
-
 const app = express();
-
 
 app.use(
     helmet.contentSecurityPolicy({
@@ -98,6 +96,7 @@ app.use(
                 "https://api.maptiler.com/",
                 "https://res.cloudinary.com/tf6igb12/",
                 "http://images.unsplash.com/",
+                "https://images.unsplash.com/",
             ],
             fontSrc: [
                 "'self'",
@@ -107,24 +106,20 @@ app.use(
     })
 );
 
-
-// view engine setup
+// View engine setup
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-
-// middleware
+// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// favicon fix
+// Favicon
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 
-
-// session config
+// Session config
 const sessionConfig = {
     store,
     name: 'session',
@@ -137,9 +132,7 @@ const sessionConfig = {
     }
 };
 
-
 app.use(session(sessionConfig));
-
 app.use(flash());
 
 app.use(passport.initialize());
@@ -156,34 +149,41 @@ app.use((req, res, next) => {
     next();
 });
 
-
-// routes
+// Routes
 app.use('/', userRoutes);
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/reviews', reviewRoutes);
 
+// Homepage
+app.get('/', async (req, res, next) => {
+    try {
+        const featuredCampgrounds = await Campground.find({})
+            .sort({ _id: -1 })
+            .limit(3);
 
-// home route
-app.get('/', (req, res) => {
-    res.render('home');
+        res.render('home', { featuredCampgrounds });
+    } catch (err) {
+        next(err);
+    }
 });
-
 
 // 404 handler
 app.all(/.*/, (req, res, next) => {
     next(new ExpressError('Page Not Found', 404));
 });
 
-
-// error handler
+// Error handler
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
-    if (!err.message) err.message = 'Oh No, Something Went Wrong!';
+
+    if (!err.message) {
+        err.message = 'Oh No, Something Went Wrong!';
+    }
+
     res.status(statusCode).render('error', { err });
 });
 
-
-// server
+// Server
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {

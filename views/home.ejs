@@ -1,43 +1,74 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Camp Navi — Find Your Place in the Wild</title>
-    <meta name="description" content="Discover Japan's beautiful campsites. Find your next outdoor adventure with Camp Navi.">
+
+    <meta name="description"
+        content="Discover Japan's beautiful campsites. Find your next outdoor adventure with Camp Navi.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
 
 <body>
+
+    <!-- HERO -->
     <div class="hero">
+
         <header class="site-header">
-            <a href="/" class="brand">camp<span>navi.</span></a>
+
+            <a href="/" class="brand">
+                camp<span>navi.</span>
+            </a>
 
             <nav class="main-nav">
+
                 <a href="/" class="nav-link active">Home</a>
                 <a href="/campgrounds" class="nav-link">Explore</a>
+
                 <% if (!currentUser) { %>
                     <a href="/login" class="nav-link">Login</a>
-                    <a href="/register" class="nav-cta">Join Camp Navi <span>↗</span></a>
+                    <a href="/register" class="nav-cta">
+                        Join Camp Navi <span>↗</span>
+                    </a>
                 <% } else { %>
                     <a href="/logout" class="nav-link">Logout</a>
                 <% } %>
+
             </nav>
 
-            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <button class="menu-toggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false">
+
                 <span></span>
                 <span></span>
+
             </button>
+
         </header>
 
         <main class="hero-content">
-            <p class="eyebrow"><span></span> YOUR NEXT ADVENTURE STARTS HERE</p>
 
-            <h1>Find your place<br>in the <em>wild.</em></h1>
+            <p class="eyebrow">
+                <span></span> YOUR NEXT ADVENTURE STARTS HERE
+            </p>
+
+            <h1>
+                Find your place<br>
+                in the <em>wild.</em>
+            </h1>
 
             <p class="hero-description">
                 From quiet forest hideaways to lakeside views beneath Mount Fuji.
@@ -45,31 +76,138 @@
             </p>
 
             <a href="/campgrounds" class="explore-button">
+
                 <span>Explore campgrounds</span>
+
                 <span class="button-arrow">↗</span>
+
             </a>
 
             <div class="hero-location">
+
                 <span class="location-line"></span>
+
                 <span>DISCOVER THE OUTDOORS · JAPAN</span>
+
             </div>
+
         </main>
 
         <div class="hero-bottom">
+
             <span class="scroll-label">SCROLL TO EXPLORE</span>
+
             <span class="scroll-line"></span>
+
         </div>
+
     </div>
 
+
+    <!-- FEATURED CAMPGROUNDS -->
+    <section class="featured-section">
+
+        <div class="featured-container">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-eyebrow">
+                        FIND YOUR NEXT ESCAPE
+                    </p>
+
+                    <h2>
+                        Places worth <em>discovering.</em>
+                    </h2>
+                </div>
+
+                <a href="/campgrounds" class="view-all-link">
+                    View all campgrounds <span>↗</span>
+                </a>
+
+            </div>
+
+
+            <% if (featuredCampgrounds && featuredCampgrounds.length > 0) { %>
+
+                <div class="featured-grid">
+
+                    <% featuredCampgrounds.forEach(campground => { %>
+
+                        <a href="/campgrounds/<%= campground._id %>"
+                            class="featured-card">
+
+                            <div class="featured-image">
+
+                                <% if (campground.images && campground.images.length > 0) { %>
+
+                                    <img
+                                        src="<%= campground.images[0].url %>"
+                                        alt="<%= campground.title %>"
+                                        loading="lazy">
+
+                                <% } else { %>
+
+                                    <div class="featured-image-placeholder">
+                                        <span>Camp Navi</span>
+                                    </div>
+
+                                <% } %>
+
+                            </div>
+
+                            <div class="featured-card-content">
+
+                                <p class="featured-location">
+                                    <%= campground.location %>
+                                </p>
+
+                                <h3>
+                                    <%= campground.title %>
+                                </h3>
+
+                                <span class="featured-card-link">
+                                    Discover campground ↗
+                                </span>
+
+                            </div>
+
+                        </a>
+
+                    <% }) %>
+
+                </div>
+
+            <% } else { %>
+
+                <p class="featured-empty">
+                    New camping destinations are coming soon.
+                </p>
+
+            <% } %>
+
+        </div>
+
+    </section>
+
+
+    <!-- MOBILE NAVIGATION -->
     <script>
+
         const menuToggle = document.querySelector('.menu-toggle');
         const navigation = document.querySelector('.main-nav');
 
         menuToggle.addEventListener('click', () => {
+
             const isOpen = navigation.classList.toggle('nav-open');
+
             menuToggle.classList.toggle('menu-open', isOpen);
+
             menuToggle.setAttribute('aria-expanded', isOpen);
+
         });
+
     </script>
+
 </body>
 </html>
