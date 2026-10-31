@@ -6,6 +6,14 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
 /* ==========================
+   GLOBAL
+========================== */
+
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ==========================
    MAPS
 ========================== */
 
@@ -168,6 +176,175 @@
 }
 
 /* ==========================
+   CAMPGROUND FORM PAGES
+========================== */
+
+.form-page {
+    min-height: 75vh;
+    background-color: #f5f3ed;
+    padding: 75px 20px 100px;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.form-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-heading .eyebrow {
+    color: #a1845d;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.form-heading h1 {
+    color: #263b32;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.camp-form-card {
+    background: #fff;
+    border: 1px solid #e9e5dc;
+    padding: 45px;
+    box-shadow: 0 15px 45px rgba(38, 59, 50, 0.06);
+}
+
+.camp-form-card .form-label {
+    color: #263b32;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 9px;
+}
+
+.camp-form-card .form-control {
+    background-color: #fbfaf7;
+    border: 1px solid #e3dfd5;
+    border-radius: 2px;
+    color: #263b32;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 13px 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.camp-form-card .form-control:focus {
+    background-color: #fff;
+    border-color: #a1845d;
+    box-shadow: 0 0 0 3px rgba(161, 132, 93, 0.12);
+}
+
+.camp-form-card textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.camp-form-card input[type="file"] {
+    padding: 12px;
+}
+
+.camp-form-card input[type="file"]::file-selector-button {
+    background: #263b32;
+    border: none;
+    color: #fff;
+    padding: 8px 13px;
+    margin-right: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.camp-form-card input[type="file"]::file-selector-button:hover {
+    background: #3b594a;
+}
+
+.camp-form-card .form-text {
+    color: #88877f;
+    font-size: 11px;
+    margin-top: 9px;
+}
+
+.camp-form-card .current-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 15px;
+    margin: 15px 0 25px;
+}
+
+.camp-form-card .current-images img {
+    width: 100%;
+    height: 115px;
+    object-fit: cover;
+    display: block;
+}
+
+.camp-form-card .current-image-item {
+    font-size: 12px;
+    color: #555;
+}
+
+.camp-form-card .form-check {
+    margin-top: 8px;
+}
+
+.camp-form-card .form-check-input:checked {
+    background-color: #263b32;
+    border-color: #263b32;
+}
+
+.camp-form-card .form-check-label {
+    font-size: 12px;
+}
+
+.camp-form-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.camp-form-submit {
+    background: #263b32;
+    border: 1px solid #263b32;
+    color: #fff;
+    padding: 13px 25px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.camp-form-submit:hover {
+    background: #3b594a;
+    border-color: #3b594a;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.camp-form-cancel {
+    color: #77766f;
+    font-size: 12px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.camp-form-cancel:hover {
+    color: #263b32;
+}
+
+/* ==========================
    SHARED FOOTER
 ========================== */
 
@@ -278,6 +455,38 @@
 
     .camp-theme-toggle {
         margin-bottom: 5px;
+    }
+}
+
+/* ==========================
+   RESPONSIVE FORMS
+========================== */
+
+@media (max-width: 600px) {
+    .form-page {
+        padding: 50px 15px 70px;
+    }
+
+    .form-heading {
+        margin-bottom: 28px;
+    }
+
+    .camp-form-card {
+        padding: 25px 20px;
+    }
+
+    .camp-form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .camp-form-submit {
+        text-align: center;
+    }
+
+    .camp-form-cancel {
+        text-align: center;
+        padding: 8px;
     }
 }
 
