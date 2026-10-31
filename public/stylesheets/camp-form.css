@@ -1,0 +1,155 @@
+
+.camp-form-page {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+}
+
+.camp-form-heading {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.camp-form-eyebrow {
+    display: block;
+    margin-bottom: 1rem;
+    color: #788b78;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+}
+
+.camp-form-heading h1 {
+    margin-bottom: 0.8rem;
+    color: #263b32;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.3rem, 5vw, 3.5rem);
+    font-weight: 400;
+}
+
+.camp-form-heading p {
+    color: #777d76;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.camp-form-card {
+    padding: 3rem;
+    border: 1px solid #e8e7df;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 15px 45px rgba(38, 59, 50, 0.06);
+}
+
+.camp-form-group {
+    margin-bottom: 1.8rem;
+}
+
+.camp-form-group label {
+    display: block;
+    margin-bottom: 0.65rem;
+    color: #34483d;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.camp-form-group .form-control {
+    min-height: 50px;
+    padding: 0.8rem 1rem;
+    border: 1px solid #dedfd8;
+    border-radius: 4px;
+    background: #fbfbf8;
+    color: #263b32;
+    font-size: 0.9rem;
+}
+
+.camp-form-group .form-control:focus {
+    border-color: #788b78;
+    box-shadow: 0 0 0 3px rgba(120, 139, 120, 0.12);
+}
+
+.camp-form-group textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.camp-form-group input[type="file"].form-control {
+    padding: 0.65rem;
+}
+
+.camp-form-group .input-group-text {
+    border-color: #dedfd8;
+    background: #f0f1eb;
+    color: #34483d;
+}
+
+.camp-form-hint {
+    display: block;
+    margin-top: 0.6rem;
+    color: #858a82;
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.camp-form-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.camp-form-submit {
+    min-height: 52px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+    border: 1px solid #263b32;
+    border-radius: 4px;
+    background: #263b32;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.camp-form-submit:hover {
+    border-color: #3c5748;
+    background: #3c5748;
+}
+
+.camp-form-submit span {
+    font-size: 1.2rem;
+}
+
+.camp-form-cancel {
+    color: #69746b;
+    font-size: 0.88rem;
+    text-decoration: none;
+}
+
+.camp-form-cancel:hover {
+    color: #263b32;
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .camp-form-page {
+        padding: 3rem 1rem 4rem;
+    }
+
+    .camp-form-card {
+        padding: 1.5rem;
+    }
+
+    .camp-form-actions {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .camp-form-cancel {
+        text-align: center;
+    }
+}

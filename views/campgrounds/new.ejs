@@ -1,58 +1,99 @@
+
 <% layout('layouts/boilerplate') %>
 
-    <div class="row">
-        <h1 class="text-center">New Campground</h1>
+<link rel="stylesheet" href="/stylesheets/camp-form.css">
 
-        <div class="col-md-6 offset-md-3">
-        <div class="card shadow p-3">
-            <div class="card-body">
-
-            <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
-
-                <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
-                    <input class="form-control" type="text" id="title" name="campground[title]" required>
-                    <div class="valid-feedback">Look Good!</div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="location">Location</label>
-                    <input class="form-control" type="text" id="location" name="campground[location]" required>
-                    <div class="valid-feedback">Look Good!</div>
-                </div>
-                <!-- add file for image upload -->
-                <div class="mb-3">
-                    <label class="form-label" for="images">Add Images</label>
-                    <input type="file" class="form-control" name="image" id="images" accept="image/*" multiple>
-                </div>
-
-
-                <div class="mb-3">
-                    <label class="form-label" for="price">Campground price</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="price-label">¥</span>
-
-                        <input type="text" class="form-control" id="price" name="campground[price]" placeholder="0.00"
-                            aria-describedby="price-label" required>
-                        <div class="valid-feedback">Look Good!</div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" id="description" name="campground[description]" required></textarea>
-                    <div class="valid-feedback">Look Good!</div>
-                </div>
-
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Add Campground</button>
-                </div>
-
-            </form>
-
-            <a href="/campgrounds">All Campgrounds</a>
-
-        </div>
-        </div>
-        </div>
+<div class="camp-form-page">
+    <div class="camp-form-heading">
+        <span class="camp-form-eyebrow">SHARE YOUR DISCOVERY</span>
+        <h1>Add a campground</h1>
+        <p>Help others discover their next favourite place in the outdoors.</p>
     </div>
+
+    <div class="camp-form-card">
+        <form
+            action="/campgrounds"
+            method="POST"
+            novalidate
+            class="validated-form"
+            enctype="multipart/form-data"
+        >
+            <div class="camp-form-group">
+                <label for="title">Campground name</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    id="title"
+                    name="campground[title]"
+                    placeholder="e.g. Forest Valley Retreat"
+                    required
+                >
+                <div class="invalid-feedback">Please enter a campground name.</div>
+            </div>
+
+            <div class="camp-form-group">
+                <label for="location">Location</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    id="location"
+                    name="campground[location]"
+                    placeholder="e.g. Nagano, Japan"
+                    required
+                >
+                <div class="invalid-feedback">Please enter a location.</div>
+            </div>
+
+            <div class="camp-form-group">
+                <label for="images">Campground photos</label>
+                <input
+                    type="file"
+                    class="form-control"
+                    name="image"
+                    id="images"
+                    accept="image/*"
+                    multiple
+                >
+                <small class="camp-form-hint">Add photos to show visitors what makes this place special.</small>
+            </div>
+
+            <div class="camp-form-group">
+                <label for="price">Price per night</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">¥</span>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="price"
+                        name="campground[price]"
+                        placeholder="0"
+                        aria-describedby="price-label"
+                        required
+                    >
+                    <div class="invalid-feedback">Please enter a price.</div>
+                </div>
+            </div>
+
+            <div class="camp-form-group">
+                <label for="description">Description</label>
+                <textarea
+                    class="form-control"
+                    id="description"
+                    name="campground[description]"
+                    rows="6"
+                    placeholder="Describe the surroundings, facilities and what visitors can expect..."
+                    required
+                ></textarea>
+                <div class="invalid-feedback">Please add a description.</div>
+            </div>
+
+            <div class="camp-form-actions">
+                <button type="submit" class="camp-form-submit">
+                    Add campground
+                    <span aria-hidden="true">→</span>
+                </button>
+                <a href="/campgrounds" class="camp-form-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
