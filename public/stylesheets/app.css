@@ -99,16 +99,20 @@ body {
     padding-right: 5%;
 }
 
+/* Homepage-style CampNavi logo */
+
 .camp-brand {
     color: #f5f3ed !important;
-    font-family: Georgia, serif;
-    font-size: 25px;
-    font-weight: 600;
-    letter-spacing: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1;
+    text-decoration: none;
 }
 
 .camp-brand span {
-    color: #c7a77b;
+    color: #c6a77b;
 }
 
 .camp-nav-links {
@@ -487,6 +491,10 @@ body {
     .camp-form-cancel {
         text-align: center;
         padding: 8px;
+    }
+
+    .camp-brand {
+        font-size: 30px;
     }
 }
 
