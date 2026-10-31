@@ -99,7 +99,6 @@
 
     </div>
 
-
     <!-- FEATURED CAMPGROUNDS -->
     <section class="featured-section">
         <div class="featured-container">
@@ -162,7 +161,6 @@
 
         </div>
     </section>
-
 
     <!-- WHY CAMP NAVI -->
     <section class="why-section">
@@ -272,7 +270,6 @@
         </div>
     </section>
 
-
     <!-- DISCOVER JAPAN -->
     <section class="discover-section">
 
@@ -320,10 +317,10 @@
         </div>
     </section>
 
-
     <!-- FINAL CALL TO ACTION -->
     <section class="closing-section">
         <div class="closing-content">
+
             <p class="section-eyebrow">YOUR NEXT ESCAPE AWAITS</p>
 
             <h2>
@@ -337,11 +334,26 @@
             </p>
 
             <a href="/campgrounds" class="closing-button">
-                Find your campground <span>↗</span>
+                Find your campground
+                <span class="button-arrow" aria-hidden="true">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M7 17 17 7" />
+                        <path d="M7 7h10v10" />
+                    </svg>
+                </span>
             </a>
+
         </div>
     </section>
-
 
     <!-- FOOTER -->
     <footer class="site-footer">
@@ -361,6 +373,7 @@
 
             <div class="footer-column">
                 <h4>Your account</h4>
+
                 <% if (!currentUser) { %>
                     <a href="/login">Login</a>
                     <a href="/register">Create account</a>
@@ -377,7 +390,6 @@
         </div>
 
     </footer>
-
 
     <!-- MOBILE NAVIGATION -->
     <script>
