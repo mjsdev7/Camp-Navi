@@ -1,0 +1,443 @@
+
+<% layout('layouts/boilerplate') %>
+
+<style>
+    .discover-page {
+        color: #26352d;
+        background: #f7f6f1;
+    }
+
+    .discover-hero {
+        min-height: 650px;
+        display: flex;
+        align-items: flex-end;
+        padding: 90px 8%;
+        color: #fff;
+        background:
+            linear-gradient(90deg, rgba(13, 25, 20, 0.65), rgba(13, 25, 20, 0.08)),
+            linear-gradient(0deg, rgba(13, 25, 20, 0.35), transparent),
+            url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=2200&q=85') center 45% / cover;
+    }
+
+    .discover-hero-content {
+        max-width: 760px;
+    }
+
+    .discover-eyebrow {
+        display: block;
+        margin-bottom: 22px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    .discover-hero h1 {
+        margin: 0 0 24px;
+        font-family: Georgia, serif;
+        font-size: clamp(52px, 8vw, 100px);
+        font-weight: 400;
+        line-height: 0.98;
+    }
+
+    .discover-hero p {
+        max-width: 520px;
+        margin-bottom: 32px;
+        font-size: 17px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.88);
+    }
+
+    .discover-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 28px;
+        padding: 16px 24px;
+        color: #26352d;
+        background: #e3c69b;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: background 0.25s ease;
+    }
+
+    .discover-button:hover {
+        color: #26352d;
+        background: #f0d9b5;
+    }
+
+    .discover-section {
+        padding: 110px 8%;
+    }
+
+    .discover-section-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 30px;
+        margin-bottom: 48px;
+    }
+
+    .discover-section-heading h2 {
+        margin: 10px 0 0;
+        font-family: Georgia, serif;
+        font-size: clamp(36px, 5vw, 58px);
+        font-weight: 400;
+    }
+
+    .discover-section-heading p {
+        max-width: 380px;
+        margin: 0;
+        color: #737b73;
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .discover-label {
+        color: #9b8059;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .region-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+    }
+
+    .region-card {
+        position: relative;
+        min-height: 390px;
+        overflow: hidden;
+        color: #fff;
+        text-decoration: none;
+        background: #34483c;
+    }
+
+    .region-card img {
+        width: 100%;
+        height: 100%;
+        min-height: 390px;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .region-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .region-card::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(0deg, rgba(12, 25, 18, 0.75), transparent 65%);
+    }
+
+    .region-card-content {
+        position: absolute;
+        z-index: 1;
+        right: 25px;
+        bottom: 25px;
+        left: 25px;
+    }
+
+    .region-card-content span {
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .region-card-content h3 {
+        margin: 8px 0 0;
+        font-family: Georgia, serif;
+        font-size: 34px;
+        font-weight: 400;
+    }
+
+    .region-card-content p {
+        margin: 8px 0 0;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 13px;
+    }
+
+    .experiences-section {
+        background: #eaece5;
+    }
+
+    .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+    }
+
+    .experience-card {
+        text-decoration: none;
+        color: #26352d;
+    }
+
+    .experience-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+
+    .experience-card h3 {
+        margin: 0 0 8px;
+        font-family: Georgia, serif;
+        font-size: 25px;
+        font-weight: 400;
+    }
+
+    .experience-card p {
+        margin: 0;
+        color: #737b73;
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .season-section {
+        padding-bottom: 120px;
+    }
+
+    .season-card {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        min-height: 430px;
+        background: #26382e;
+        color: #fff;
+    }
+
+    .season-card img {
+        width: 100%;
+        height: 100%;
+        min-height: 430px;
+        object-fit: cover;
+    }
+
+    .season-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 55px;
+    }
+
+    .season-content h2 {
+        margin: 15px 0 20px;
+        font-family: Georgia, serif;
+        font-size: clamp(36px, 5vw, 55px);
+        font-weight: 400;
+        line-height: 1.1;
+    }
+
+    .season-content p {
+        margin-bottom: 28px;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .season-content .discover-button {
+        align-self: flex-start;
+    }
+
+    @media (max-width: 991px) {
+        .discover-section {
+            padding: 80px 6%;
+        }
+
+        .region-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .experience-grid {
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 35px;
+        }
+
+        .season-content {
+            padding: 35px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .discover-hero {
+            min-height: 620px;
+            padding: 65px 25px;
+            background-position: center;
+        }
+
+        .discover-hero h1 {
+            font-size: 57px;
+        }
+
+        .discover-hero p {
+            font-size: 15px;
+        }
+
+        .discover-section {
+            padding: 70px 22px;
+        }
+
+        .discover-section-heading {
+            display: block;
+            margin-bottom: 32px;
+        }
+
+        .discover-section-heading p {
+            margin-top: 18px;
+        }
+
+        .region-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .region-card,
+        .region-card img {
+            min-height: 360px;
+        }
+
+        .experience-grid {
+            gap: 30px 14px;
+        }
+
+        .experience-card h3 {
+            font-size: 21px;
+        }
+
+        .season-card {
+            grid-template-columns: 1fr;
+        }
+
+        .season-card img {
+            min-height: 280px;
+            max-height: 320px;
+        }
+
+        .season-content {
+            padding: 35px 25px 40px;
+        }
+    }
+</style>
+
+<div class="discover-page">
+
+    <section class="discover-hero">
+        <div class="discover-hero-content">
+            <span class="discover-eyebrow">CampNavi · Discover Japan</span>
+            <h1>Find your<br>own Japan.</h1>
+            <p>
+                From quiet mountain escapes to hidden coastal villages,
+                discover the places that make Japan unforgettable.
+            </p>
+            <a href="#regions" class="discover-button">
+                Explore destinations <span>↗</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="discover-section" id="regions">
+        <div class="discover-section-heading">
+            <div>
+                <span class="discover-label">Explore the country</span>
+                <h2>Discover Japan</h2>
+            </div>
+            <p>
+                Every region has its own character. Find somewhere new,
+                explore the landscape and make your next trip memorable.
+            </p>
+        </div>
+
+        <div class="region-grid">
+            <a href="/campgrounds" class="region-card">
+                <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80" alt="Traditional streets of Kyoto">
+                <div class="region-card-content">
+                    <span>Culture & countryside</span>
+                    <h3>Kansai</h3>
+                    <p>Ancient towns, forests and mountain escapes</p>
+                </div>
+            </a>
+
+            <a href="/campgrounds" class="region-card">
+                <img src="https://images.unsplash.com/photo-1517783999520-f068d7431a60?auto=format&fit=crop&w=900&q=80" alt="Mount Fuji and Lake Kawaguchi">
+                <div class="region-card-content">
+                    <span>Mountains & lakes</span>
+                    <h3>Chubu</h3>
+                    <p>Alpine scenery and iconic landscapes</p>
+                </div>
+            </a>
+
+            <a href="/campgrounds" class="region-card">
+                <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=900&q=80" alt="Japanese countryside">
+                <div class="region-card-content">
+                    <span>Nature & adventure</span>
+                    <h3>Hokkaido</h3>
+                    <p>Wide open spaces and wild landscapes</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="discover-section experiences-section">
+        <div class="discover-section-heading">
+            <div>
+                <span class="discover-label">Find your escape</span>
+                <h2>Explore by experience</h2>
+            </div>
+            <p>
+                Whether you love the mountains, the sea or a quiet place
+                among the trees, there's a Japan waiting to be explored.
+            </p>
+        </div>
+
+        <div class="experience-grid">
+            <a href="/campgrounds" class="experience-card">
+                <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=700&q=80" alt="Mountain lake surrounded by nature">
+                <h3>Mountain escapes</h3>
+                <p>Find stillness in Japan's spectacular highlands.</p>
+            </a>
+
+            <a href="/campgrounds" class="experience-card">
+                <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=80" alt="Forest trail through green trees">
+                <h3>Forest retreats</h3>
+                <p>Slow down beneath the trees and reconnect with nature.</p>
+            </a>
+
+            <a href="/campgrounds" class="experience-card">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80" alt="Coastal beach and ocean">
+                <h3>Coastal journeys</h3>
+                <p>Discover quiet shores and beautiful ocean views.</p>
+            </a>
+
+            <a href="/campgrounds" class="experience-card">
+                <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=700&q=80" alt="Sunrise over a green countryside landscape">
+                <h3>Open countryside</h3>
+                <p>Escape the everyday and enjoy Japan's rural beauty.</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="discover-section season-section">
+        <div class="season-card">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85" alt="Beautiful Japanese countryside in autumn">
+            <div class="season-content">
+                <span class="discover-label">A different season, a different Japan</span>
+                <h2>Every season<br>has a story.</h2>
+                <p>
+                    Cherry blossoms in spring, green mountain trails in
+                    summer, fiery autumn forests and peaceful winter escapes.
+                    Discover Japan throughout the year.
+                </p>
+                <a href="/campgrounds" class="discover-button">
+                    Find your next escape <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+</div>
