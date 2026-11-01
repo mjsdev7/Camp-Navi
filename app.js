@@ -1,4 +1,3 @@
-
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config({ quiet: true });
 }
@@ -153,6 +152,10 @@ app.use((req, res, next) => {
 app.use('/', userRoutes);
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/reviews', reviewRoutes);
+
+app.get('/discover', (req, res) => {
+    res.render('discover');
+});
 
 // Homepage
 app.get('/', async (req, res, next) => {
