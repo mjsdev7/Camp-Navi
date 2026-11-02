@@ -2,39 +2,56 @@
 
 **Explore Japan. Find your next campsite.**
 
-Camp-Navi is a full-stack campground listing web application that allows users to browse, create, update, and delete campground listings across Japan.
+Camp-Navi is a full-stack campground discovery and management application inspired by camping and travel in Japan. Users can explore campground listings, view detailed information, read reviews, and manage their own listings.
 
-The application was built as a personal full-stack development project, focusing on backend development, database design, RESTful routing, authentication, reviews, image management, and MVC application architecture.
+Built with Node.js, Express, MongoDB and EJS, the project demonstrates full-stack development through authentication, authorisation, database relationships, CRUD operations, image management and server-side rendering.
 
-** Live Demo:** https://camp-navi.vercel.app
+**Live Demo:** [camp-navi.vercel.app](https://camp-navi.vercel.app)
 
-** GitHub:** https://github.com/mjsdev7/Camp-Navi
+**GitHub Repository:** [github.com/mjsdev7/Camp-Navi](https://github.com/mjsdev7/Camp-Navi)
 
 ---
 
 ## Features
 
+- Browse campground listings across Japan
+- Discover destinations through the Discover Japan page
+- View detailed campground information, images, prices and locations
 - User registration and authentication
-- User authorisation for campground and review actions
-- Full CRUD functionality for campground listings
-- Browse campground listings from a MongoDB database
-- Detailed campground pages with images, pricing, descriptions, and locations
-- Create, edit, and delete campground listings
-- User reviews and ratings
-- Cloudinary image storage and management
+- Authorisation for campground and review actions
+- Create, edit and delete campground listings
+- Submit, edit and delete reviews where authorised
+- Cloudinary image uploads and management
 - MongoDB database integration using Mongoose
-- Server-side rendering with EJS
 - Form validation and error handling
-- MVC-style application structure
-- Real campground locations across Japan
-- Database seed scripts
-- Responsive interface using Bootstrap
+- Responsive layouts using Bootstrap
+- Database seed scripts for campground data
+
+---
+
+## Screenshots
+
+### Homepage
+
+![Camp-Navi Homepage](screenshots/homepage.png)
+
+### Discover Japan
+
+![Camp-Navi Discover Japan](screenshots/discover-japan.png)
+
+### Explore Campgrounds
+
+![Camp-Navi Explore Campgrounds](screenshots/explore-campgrounds.png)
+
+### Campground Details
+
+![Camp-Navi Campground Details](screenshots/campground-details.png)
 
 ---
 
 ## Tech Stack
 
-### Backend
+**Backend**
 
 - Node.js
 - Express.js
@@ -42,14 +59,14 @@ The application was built as a personal full-stack development project, focusing
 - Mongoose
 - EJS
 
-### Frontend
+**Frontend**
 
 - HTML
 - CSS
-- Bootstrap
 - JavaScript
+- Bootstrap
 
-### Authentication & Services
+**Authentication and Services**
 
 - Passport.js
 - Cloudinary
@@ -62,60 +79,37 @@ The application was built as a personal full-stack development project, focusing
 
 ### Campground Discovery
 
-Users can browse campground listings across Japan and view detailed information including images, pricing, descriptions, locations, and coordinates.
+Users can browse campground listings across Japan and explore destination information. Each campground has a dedicated page with details such as images, pricing, descriptions and location information.
 
 ### Campground Management
 
-Authenticated users can create campground listings and, where authorised, edit or delete their own listings.
+Authenticated users can create campground listings. Listing owners can edit or delete their own campgrounds.
 
 ### Reviews
 
-Authenticated users can leave reviews on campground listings. Review permissions ensure users can only manage reviews they are authorised to modify.
+Authenticated users can leave reviews on campground listings. Authorisation checks control who can edit or delete reviews.
 
 ### Image Management
 
-Campground images are uploaded and managed using Cloudinary rather than being stored directly in the application.
-
----
-
-## Screenshots
-
-### Homepage
-
-![Camp-Navi Homepage](screenshots/camp-navi-home.png)
-
-### All Campgrounds
-
-![Camp-Navi All Campgrounds](screenshots/camp-navi-all-campgrounds.png)
-
-### Campground Details
-
-![Camp-Navi Campground Details](screenshots/camp-navi-campground-details.png)
+Campground images are uploaded and managed through Cloudinary, rather than stored directly in the application.
 
 ---
 
 ## Project Architecture
 
+The application follows an MVC-style structure, separating database models, route handling, application logic and EJS views.
+
 ```text
 Camp-Navi/
-
 ├── models/
-│   └── MongoDB schema definitions
-
 ├── routes/
-│   └── Express route handlers
-
 ├── controllers/
-│   └── Application logic
-
 ├── views/
-│   └── EJS templates
-
+├── public/
+│   └── stylesheets/
 ├── seeds/
-│   ├── index.js
-│   ├── images.js
-│   └── descriptions.js
-
+├── uploads/
+├── utilities/
 ├── app.js
 └── package.json
 ```
@@ -124,20 +118,20 @@ Camp-Navi/
 
 ## Data Model
 
-Each campground contains:
+Campground records include:
 
 - Title
-- Image URL
+- Images
 - Price
 - Description
 - Location
 - Author
 - Reviews
-- Geometry coordinates
+- Geographic coordinates
 
 ---
 
-## Setup Instructions
+## Running Locally
 
 ### 1. Clone the repository
 
@@ -152,9 +146,9 @@ cd Camp-Navi
 npm install
 ```
 
-### 3. Environment Variables
+### 3. Configure environment variables
 
-Create a `.env` file in the root directory:
+Create a `.env` file in the project root and add the credentials required by the application:
 
 ```text
 DB_URL=your_mongodb_connection_string
@@ -163,66 +157,59 @@ CLOUDINARY_KEY=your_cloudinary_key
 CLOUDINARY_SECRET=your_cloudinary_secret
 ```
 
-Add your own values before running the application.
+Use your own credentials. Check the application configuration for any additional environment variables required by your local setup.
 
-### 4. Start MongoDB locally
-
-Make sure MongoDB is running on your machine.
-
-### 5. Seed the database (optional)
+### 4. Seed the database (optional)
 
 ```bash
 node seeds/index.js
 ```
 
-This will populate the database with campground listings.
+This runs the project's seed script to populate the database with campground data.
 
-### 6. Run the application
+### 5. Start the application
 
 ```bash
 node app.js
 ```
 
-### 7. Open the application
+### 6. Open the application
 
 Visit:
 
-```text
 http://localhost:3000
-```
 
 ---
 
 ## Key Learnings
 
-- Building RESTful routes with Express
-- Working with MongoDB and Mongoose
-- Creating and structuring an MVC application
-- Server-side rendering with EJS
-- Implementing CRUD operations
-- Managing database relationships
-- Creating reusable seed data
-- User authentication and authorization
-- Implementing reviews and ratings
-- Integrating Cloudinary image storage
-- Handling application errors
+Through this project, I developed practical experience with:
+
+- Building server-side applications using Node.js and Express
+- Designing MongoDB schemas and relationships with Mongoose
+- Structuring an application using the MVC pattern
+- Creating RESTful routes and CRUD functionality
+- Implementing authentication and authorisation
+- Managing user-generated content and reviews
+- Integrating Cloudinary for image management
+- Rendering dynamic pages using EJS
+- Validating forms and handling application errors
+- Deploying an application using Vercel
 
 ---
 
 ## Future Improvements
 
-Possible future improvements include:
+Potential areas for further development include:
 
-- Search and filtering functionality
-- Interactive map integration
-- Improved campground recommendations
-- Additional campground discovery features
-- Improved mobile experience
+- More advanced campground search and filtering
+- Enhanced campground recommendations
+- Further improvements to the mobile experience
 
 ---
 
-## Purpose
+## About the Project
 
-This project demonstrates full-stack web development skills using a real-world application architecture.
+Camp-Navi was built as a personal full-stack development project to apply and strengthen my web development skills through a practical application.
 
-Camp-Navi focuses on backend structure, database design, RESTful routing, authentication, CRUD functionality, reviews, image management, and dynamic server-rendered frontend development.
+The project brought together backend development, database design, authentication, image management and frontend development in one complete campground discovery experience.
