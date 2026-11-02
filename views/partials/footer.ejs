@@ -15,7 +15,7 @@
 
         <div class="footer-column">
             <h4>Your account</h4>
-            <% if (!currentUser) { %>
+                <% if (!locals.currentUser) { %>
                 <a href="/login">Login</a>
                 <a href="/register">Create account</a>
             <% } else { %>
