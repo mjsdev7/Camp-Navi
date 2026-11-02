@@ -5,43 +5,26 @@
  *========================================
  */
 
+
+/* GLOBAL PAGE STYLING */
+
 .explore-page {
-    --explore-forest: #263b32;
-    --explore-forest-dark: #1d3028;
-    --explore-cream: #f5f3ed;
+    --explore-forest: var(--forest);
+    --explore-forest-dark: var(--forest-dark);
+    --explore-cream: var(--cream);
     --explore-sage: #899b88;
-    --explore-gold: #c7a77b;
-    --explore-muted: #777d74;
-    --explore-background: #fff;
-    --explore-card: #fff;
+    --explore-gold: var(--accent);
+    --explore-muted: var(--muted-text);
+    --explore-background: var(--page-bg);
+    --explore-card: var(--surface);
+    --explore-border: var(--border);
 
-    color: var(--explore-forest);
+    width: 100%;
+    min-height: 75vh;
     padding-bottom: 100px;
-}
-
-body.dark-mode .explore-page {
-    --explore-forest: #f0eee6;
-    --explore-forest-dark: #d8bd96;
-    --explore-cream: #1e2923;
-    --explore-sage: #a9b9a5;
-    --explore-gold: #c7a77b;
-    --explore-muted: #b0b5ae;
-    --explore-background: #121a16;
-    --explore-card: #1e2923;
-
-    color: var(--explore-forest);
-}
-
-body.dark-mode .explore-card {
-    border: 1px solid #39463e;
-}
-
-body.dark-mode .explore-image-placeholder {
-    background: #26332b;
-}
-
-body.dark-mode .explore-empty {
-    background: var(--explore-card);
+    background-color: var(--page-bg);
+    color: var(--text);
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 
@@ -66,17 +49,17 @@ body.dark-mode .explore-empty {
 }
 
 .explore-heading h1 {
-    color: var(--explore-forest);
+    color: var(--text);
     font-family: "Playfair Display", Georgia, serif;
     font-size: clamp(42px, 5vw, 64px);
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: -1.8px;
     line-height: 1.1;
     margin: 0 0 18px;
 }
 
 .explore-heading p {
-    color: var(--explore-muted);
+    color: var(--muted-text);
     font-family: "DM Sans", sans-serif;
     font-size: 15px;
     line-height: 1.8;
@@ -90,7 +73,7 @@ body.dark-mode .explore-empty {
     gap: 12px;
     flex-shrink: 0;
     padding: 15px 22px;
-    background: var(--explore-forest);
+    background: var(--forest);
     color: #fff;
     text-decoration: none;
     font-family: "DM Sans", sans-serif;
@@ -107,7 +90,7 @@ body.dark-mode .explore-empty {
 }
 
 .explore-add-button:hover {
-    background: var(--explore-forest-dark);
+    background: #3b594a;
     color: #fff;
     transform: translateY(-2px);
 }
@@ -128,17 +111,17 @@ body.dark-mode .explore-empty {
 }
 
 .explore-section-heading h2 {
-    color: var(--explore-forest);
+    color: var(--text);
     font-family: "Playfair Display", Georgia, serif;
     font-size: 34px;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: -0.5px;
     margin: 0;
 }
 
 .explore-map-note,
 .explore-count {
-    color: var(--explore-muted);
+    color: var(--muted-text);
     font-family: "DM Sans", sans-serif;
     font-size: 12px;
     padding-bottom: 5px;
@@ -164,7 +147,8 @@ body.dark-mode .explore-empty {
 
 .explore-listings {
     margin-top: 0;
-    background-color: var(--explore-background);
+    padding: 0;
+    background-color: transparent;
 }
 
 .explore-listings > .explore-section-heading {
@@ -182,12 +166,14 @@ body.dark-mode .explore-empty {
 
 .explore-card {
     min-width: 0;
-    background: var(--explore-card);
-    transition: transform 0.3s ease;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .explore-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(38, 59, 50, 0.08);
 }
 
 .explore-card-image-link {
@@ -245,7 +231,7 @@ body.dark-mode .explore-empty {
 /* CARD CONTENT */
 
 .explore-card-content {
-    padding: 21px 2px 0;
+    padding: 21px 18px 20px;
 }
 
 .explore-card-location {
@@ -263,12 +249,12 @@ body.dark-mode .explore-empty {
     margin: 0 0 11px;
     font-family: "Playfair Display", Georgia, serif;
     font-size: 23px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.35;
 }
 
 .explore-card-content h3 a {
-    color: var(--explore-forest);
+    color: var(--text);
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -284,7 +270,7 @@ body.dark-mode .explore-empty {
     line-clamp: 2;
     overflow: hidden;
     min-height: 48px;
-    color: var(--explore-muted);
+    color: var(--muted-text);
     font-family: "DM Sans", sans-serif;
     font-size: 13px;
     line-height: 1.8;
@@ -295,7 +281,7 @@ body.dark-mode .explore-empty {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    color: var(--explore-forest);
+    color: var(--text);
     font-family: "DM Sans", sans-serif;
     font-size: 11px;
     font-weight: 600;
@@ -319,23 +305,58 @@ body.dark-mode .explore-empty {
 
 .explore-empty {
     padding: 75px 25px;
-    background: var(--explore-cream);
+    background: var(--surface);
+    border: 1px solid var(--border);
     text-align: center;
 }
 
 .explore-empty h3 {
-    color: var(--explore-forest);
+    color: var(--text);
     font-family: "Playfair Display", Georgia, serif;
     font-size: 30px;
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 12px;
 }
 
 .explore-empty p {
-    color: var(--explore-muted);
+    color: var(--muted-text);
     font-family: "DM Sans", sans-serif;
     font-size: 14px;
     margin-bottom: 25px;
+}
+
+
+/* DARK MODE */
+
+body.dark-mode .explore-page {
+    background-color: var(--page-bg);
+}
+
+body.dark-mode .explore-card {
+    background-color: var(--surface);
+    border-color: var(--border);
+    box-shadow: none;
+}
+
+body.dark-mode .explore-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .explore-image-placeholder {
+    background: #26332b;
+}
+
+body.dark-mode .explore-card-content h3 a:hover {
+    color: var(--accent);
+}
+
+body.dark-mode .explore-card-link:hover {
+    color: var(--accent);
+}
+
+body.dark-mode .explore-empty {
+    background: var(--surface);
+    border-color: var(--border);
 }
 
 
@@ -396,7 +417,7 @@ body.dark-mode .explore-empty {
     }
 
     .explore-card-content {
-        padding-top: 17px;
+        padding: 17px 16px 18px;
     }
 
     .explore-count,
