@@ -1,3 +1,4 @@
+
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config({ quiet: true });
 }
@@ -46,7 +47,9 @@ const connectSrcUrls = [
     "https://cdn.jsdelivr.net/",
 ];
 
-const fontSrcUrls = [];
+const fontSrcUrls = [
+    "https://fonts.gstatic.com/",
+];
 
 // DB
 const dbUrl = process.env.DB_URL;
