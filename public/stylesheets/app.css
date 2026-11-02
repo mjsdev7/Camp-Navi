@@ -14,13 +14,40 @@ GLOBAL
 ==========================
 */
 
+:root {
+    --forest: #263b32;
+    --forest-dark: #192b23;
+    --cream: #f5f3ed;
+    --white: #ffffff;
+    --accent: #c6a77b;
+    --muted: #8b795f;
+
+    --page-bg: #f5f3ed;
+    --surface: #ffffff;
+    --text: #263b32;
+    --muted-text: #77766f;
+    --border: #e9e5dc;
+    --input-bg: #fbfaf7;
+}
+
 html {
-    background-color: #192b23;
+    background-color: var(--forest-dark);
 }
 
 body {
     font-family: 'DM Sans', sans-serif;
-    background-color: #192b23;
+    background-color: var(--page-bg);
+    color: var(--text);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body.dark-mode {
+    --page-bg: #121a16;
+    --surface: #1e2923;
+    --text: #f5f3ed;
+    --muted-text: #b0b5ae;
+    --border: #39463e;
+    --input-bg: #26332b;
 }
 
 
@@ -38,49 +65,6 @@ MAPS
 #map {
     width: 100%;
     height: 300px;
-}
-
-
-/*
-==========================
-DARK MODE
-==========================
-*/
-
-.dark-mode {
-    background-color: #121212;
-    color: white;
-}
-
-.dark-mode .card {
-    background-color: #1e1e1e;
-    color: white;
-    border-color: #333;
-}
-
-.dark-mode h1,
-.dark-mode h2,
-.dark-mode h3,
-.dark-mode h4,
-.dark-mode h5,
-.dark-mode p,
-.dark-mode label {
-    color: white;
-}
-
-.dark-mode .form-control {
-    background-color: #222;
-    color: white;
-    border-color: #555;
-}
-
-.dark-mode .camp-navbar {
-    background-color: #17251f !important;
-}
-
-.dark-mode footer {
-    background-color: #000;
-    color: white;
 }
 
 
@@ -116,12 +100,14 @@ CAMP NAVI NAVBAR
     z-index: 1000;
 }
 
+.dark-mode .camp-navbar {
+    background-color: #17251f !important;
+}
+
 .camp-navbar-container {
     padding-left: 5%;
     padding-right: 5%;
 }
-
-/** Homepage-style CampNavi logo **/
 
 .camp-brand {
     color: #f5f3ed !important;
@@ -210,7 +196,7 @@ CAMPGROUND FORM PAGES
 
 .form-page {
     min-height: 75vh;
-    background-color: #f5f3ed;
+    background-color: var(--page-bg);
     padding: 75px 20px 100px;
 }
 
@@ -235,7 +221,7 @@ CAMPGROUND FORM PAGES
 }
 
 .form-heading h1 {
-    color: #263b32;
+    color: var(--text);
     font-family: 'Playfair Display', serif;
     font-size: clamp(36px, 5vw, 52px);
     font-weight: 500;
@@ -243,14 +229,14 @@ CAMPGROUND FORM PAGES
 }
 
 .camp-form-card {
-    background: #fff;
-    border: 1px solid #e9e5dc;
+    background: var(--surface);
+    border: 1px solid var(--border);
     padding: 45px;
     box-shadow: 0 15px 45px rgba(38, 59, 50, 0.06);
 }
 
 .camp-form-card .form-label {
-    color: #263b32;
+    color: var(--text);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -258,10 +244,10 @@ CAMPGROUND FORM PAGES
 }
 
 .camp-form-card .form-control {
-    background-color: #fbfaf7;
-    border: 1px solid #e3dfd5;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
     border-radius: 2px;
-    color: #263b32;
+    color: var(--text);
     font-family: 'DM Sans', sans-serif;
     font-size: 14px;
     padding: 13px 15px;
@@ -269,8 +255,9 @@ CAMPGROUND FORM PAGES
 }
 
 .camp-form-card .form-control:focus {
-    background-color: #fff;
+    background-color: var(--surface);
     border-color: #a1845d;
+    color: var(--text);
     box-shadow: 0 0 0 3px rgba(161, 132, 93, 0.12);
 }
 
@@ -298,7 +285,7 @@ CAMPGROUND FORM PAGES
 }
 
 .camp-form-card .form-text {
-    color: #88877f;
+    color: var(--muted-text);
     font-size: 11px;
     margin-top: 9px;
 }
@@ -319,7 +306,7 @@ CAMPGROUND FORM PAGES
 
 .camp-form-card .current-image-item {
     font-size: 12px;
-    color: #555;
+    color: var(--muted-text);
 }
 
 .camp-form-card .form-check {
@@ -333,6 +320,7 @@ CAMPGROUND FORM PAGES
 
 .camp-form-card .form-check-label {
     font-size: 12px;
+    color: var(--text);
 }
 
 .camp-form-actions {
@@ -363,14 +351,14 @@ CAMPGROUND FORM PAGES
 }
 
 .camp-form-cancel {
-    color: #77766f;
+    color: var(--muted-text);
     font-size: 12px;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .camp-form-cancel:hover {
-    color: #263b32;
+    color: var(--text);
 }
 
 
@@ -466,6 +454,81 @@ SHARED FOOTER
 
 .site-footer .footer-bottom a:hover {
     color: #fff;
+}
+
+
+/*
+==========================
+DARK MODE
+==========================
+*/
+
+body.dark-mode .form-page {
+    background-color: var(--page-bg);
+}
+
+body.dark-mode .form-heading h1,
+body.dark-mode .camp-form-card .form-label,
+body.dark-mode .camp-form-card .form-check-label {
+    color: var(--text);
+}
+
+body.dark-mode .camp-form-card {
+    background-color: var(--surface);
+    border-color: var(--border);
+}
+
+body.dark-mode .camp-form-card .form-control {
+    background-color: var(--input-bg);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+body.dark-mode .camp-form-card .form-control:focus {
+    background-color: var(--surface);
+    color: var(--text);
+}
+
+body.dark-mode .camp-form-card .form-control::placeholder {
+    color: #a0aaa2;
+}
+
+body.dark-mode .camp-form-card input[type="file"] {
+    color: var(--text);
+}
+
+body.dark-mode .camp-form-card .current-image-item {
+    color: var(--muted-text);
+}
+
+body.dark-mode .camp-form-card .form-check-input {
+    background-color: var(--input-bg);
+    border-color: #65736a;
+}
+
+body.dark-mode .camp-form-card .form-check-input:checked {
+    background-color: #c6a77b;
+    border-color: #c6a77b;
+}
+
+body.dark-mode .camp-form-submit {
+    background: #c6a77b;
+    border-color: #c6a77b;
+    color: #192b23;
+}
+
+body.dark-mode .camp-form-submit:hover {
+    background: #d8bd96;
+    border-color: #d8bd96;
+    color: #192b23;
+}
+
+body.dark-mode .camp-form-cancel:hover {
+    color: #c6a77b;
+}
+
+body.dark-mode .site-footer {
+    background: #0b100d;
 }
 
 
