@@ -12,7 +12,7 @@
     --explore-sage: #899b88;
     --explore-gold: #c7a77b;
     --explore-muted: #777d74;
-    --explore-background: transparent;
+    --explore-background: #fff;
     --explore-card: #fff;
 
     color: var(--explore-forest);
@@ -32,12 +32,7 @@ body.dark-mode .explore-page {
     color: var(--explore-forest);
 }
 
-body.dark-mode .explore-listings {
-    background-color: var(--explore-background);
-}
-
 body.dark-mode .explore-card {
-    background-color: var(--explore-card);
     border: 1px solid #39463e;
 }
 
@@ -47,10 +42,6 @@ body.dark-mode .explore-image-placeholder {
 
 body.dark-mode .explore-empty {
     background: var(--explore-card);
-}
-
-body.dark-mode .explore-map-section {
-    color: var(--explore-forest);
 }
 
 
@@ -173,6 +164,7 @@ body.dark-mode .explore-map-section {
 
 .explore-listings {
     margin-top: 0;
+    background-color: var(--explore-background);
 }
 
 .explore-listings > .explore-section-heading {
