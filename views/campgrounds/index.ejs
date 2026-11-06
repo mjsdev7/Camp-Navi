@@ -3,7 +3,21 @@
 
 <link rel="stylesheet" href="/stylesheets/explore.css">
 
-<div class="explore-page">
+<%
+    const sortedCampgrounds = [...campgrounds].sort((a, b) =>
+        String(a.title || '').localeCompare(String(b.title || ''), 'en', {
+            sensitivity: 'base'
+        })
+    );
+
+    const availableLetters = [...new Set(
+        sortedCampgrounds.map(campground =>
+            String(campground.title || '').trim().charAt(0).toUpperCase()
+        )
+    )].filter(letter => /^[A-Z]$/.test(letter)).sort();
+%>
+
+<div class="explore-page" id="top">
 
     <!-- Page introduction -->
     <section class="explore-header">
@@ -34,7 +48,7 @@
     </section>
 
     <!-- Campground listings -->
-    <section class="explore-listings">
+    <section class="explore-listings" id="campground-list">
 
         <div class="explore-section-heading">
             <div>
@@ -46,7 +60,7 @@
             </span>
         </div>
 
-        <% if (campgrounds.length === 0) { %>
+        <% if (sortedCampgrounds.length === 0) { %>
 
             <div class="explore-empty">
                 <h3>Your next adventure starts here.</h3>
@@ -60,9 +74,26 @@
 
             <div class="explore-grid">
 
-                <% for (let campground of campgrounds) { %>
+                <%
+                    let previousLetter = '';
 
-                    <article class="explore-card">
+                    for (let i = 0; i < sortedCampgrounds.length; i++) {
+                        const campground = sortedCampgrounds[i];
+                        const firstLetter = String(campground.title || '')
+                            .trim()
+                            .charAt(0)
+                            .toUpperCase();
+
+                        const isFirstOfLetter = firstLetter !== previousLetter;
+                        previousLetter = firstLetter;
+                %>
+
+                    <article
+                        class="explore-card"
+                        <% if (isFirstOfLetter && /^[A-Z]$/.test(firstLetter)) { %>
+                            id="letter-<%= firstLetter %>"
+                        <% } %>
+                    >
 
                         <a
                             href="/campgrounds/<%= campground._id %>"
@@ -122,11 +153,25 @@
 
             </div>
 
+            <!-- Alphabetical navigation -->
+            <nav class="explore-alphabet" aria-label="Jump to campground alphabetically">
+                <span class="explore-alphabet-label">INDEX</span>
+
+                <% availableLetters.forEach(letter => { %>
+                    <a href="#letter-<%= letter %>"><%= letter %></a>
+                <% }) %>
+            </nav>
+
         <% } %>
 
     </section>
 
 </div>
+
+<!-- Back to top -->
+<a href="#top" class="explore-back-to-top" aria-label="Back to top">
+    <span aria-hidden="true">↑</span>
+</a>
 
 <!-- Map data and functionality -->
 <%- include('mapData') %>

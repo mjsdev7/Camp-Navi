@@ -1,9 +1,7 @@
 
-/**
- *========================================
- * CAMP NAVI — EXPLORE PAGE
- *========================================
- */
+/* ========================================
+   CAMP NAVI — EXPLORE PAGE
+   ======================================== */
 
 
 /* GLOBAL PAGE STYLING */
@@ -146,6 +144,7 @@
 /* CAMPGROUND GRID */
 
 .explore-listings {
+    position: relative;
     margin-top: 0;
     padding: 0;
     background-color: transparent;
@@ -168,6 +167,7 @@
     min-width: 0;
     background: var(--surface);
     border: 1px solid var(--border);
+    scroll-margin-top: 110px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -301,6 +301,100 @@
 }
 
 
+/* ALPHABETICAL NAVIGATION */
+
+.explore-alphabet {
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    right: 22px;
+    transform: translateY(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+
+    padding: 12px 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 18px rgba(30, 45, 36, 0.08);
+}
+
+.explore-alphabet-label {
+    color: var(--explore-sage);
+    font-family: "DM Sans", sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.explore-alphabet a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 21px;
+
+    color: var(--muted-text);
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.explore-alphabet a:hover {
+    background: var(--forest);
+    color: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* BACK TO TOP BUTTON */
+
+.explore-back-to-top {
+    position: fixed;
+    z-index: 1001;
+    right: 25px;
+    bottom: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    background: var(--forest);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(30, 45, 36, 0.18);
+
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.explore-back-to-top span {
+    font-size: 23px;
+    line-height: 1;
+}
+
+.explore-back-to-top:hover {
+    background: #3b594a;
+    color: #fff;
+    transform: translateY(-4px);
+}
+
+
 /* EMPTY STATE */
 
 .explore-empty {
@@ -359,8 +453,32 @@ body.dark-mode .explore-empty {
     border-color: var(--border);
 }
 
+body.dark-mode .explore-alphabet {
+    background: var(--surface);
+    border-color: var(--border);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .explore-alphabet a:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
 
 /* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .explore-alphabet {
+        right: 8px;
+        padding: 9px 5px;
+    }
+
+    .explore-alphabet a {
+        width: 19px;
+        height: 19px;
+        font-size: 9px;
+    }
+}
 
 @media (max-width: 991px) {
     .explore-grid {
@@ -424,6 +542,17 @@ body.dark-mode .explore-empty {
     .explore-map-note {
         padding-bottom: 0;
     }
+
+    .explore-alphabet {
+        display: none;
+    }
+
+    .explore-back-to-top {
+        right: 17px;
+        bottom: 17px;
+        width: 42px;
+        height: 42px;
+    }
 }
 
 @media (max-width: 420px) {
@@ -437,5 +566,21 @@ body.dark-mode .explore-empty {
 
     .explore-card-image {
         height: 225px;
+    }
+}
+
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .explore-card,
+    .explore-card-image img,
+    .explore-alphabet a,
+    .explore-back-to-top {
+        transition: none;
     }
 }
