@@ -1,4 +1,3 @@
-
 /* ========================================
    CAMP NAVI — EXPLORE PAGE
    ======================================== */
@@ -141,7 +140,7 @@
 }
 
 
-/* CAMPGROUND GRID */
+/* CAMPGROUND LISTINGS */
 
 .explore-listings {
     position: relative;
@@ -153,6 +152,101 @@
 .explore-listings > .explore-section-heading {
     margin-bottom: 32px;
 }
+
+
+/* REGIONAL NAVIGATION */
+
+.explore-regions {
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    right: 22px;
+    transform: translateY(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+
+    padding: 14px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 18px rgba(30, 45, 36, 0.08);
+}
+
+.explore-regions-label {
+    color: var(--explore-sage);
+    font-family: "DM Sans", sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.explore-regions a {
+    display: block;
+    padding: 5px 8px;
+
+    color: var(--muted-text);
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.explore-regions a:hover {
+    background: var(--forest);
+    color: #fff;
+}
+
+
+/* REGIONAL SECTIONS */
+
+.explore-region-section {
+    margin-bottom: 75px;
+    scroll-margin-top: 40px;
+}
+
+.explore-region-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 40px;
+}
+
+.explore-region-heading .explore-eyebrow {
+    margin-bottom: 8px;
+}
+
+.explore-region-heading h3 {
+    color: var(--text);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.explore-region-count {
+    color: var(--muted-text);
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    padding-bottom: 5px;
+    white-space: nowrap;
+}
+
+
+/* CAMPGROUND GRID */
 
 .explore-grid {
     display: grid;
@@ -167,7 +261,6 @@
     min-width: 0;
     background: var(--surface);
     border: 1px solid var(--border);
-    scroll-margin-top: 110px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -301,62 +394,6 @@
 }
 
 
-/* ALPHABETICAL NAVIGATION */
-
-.explore-alphabet {
-    position: fixed;
-    z-index: 1000;
-    top: 50%;
-    right: 22px;
-    transform: translateY(-50%);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-
-    padding: 12px 8px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    box-shadow: 0 4px 18px rgba(30, 45, 36, 0.08);
-}
-
-.explore-alphabet-label {
-    color: var(--explore-sage);
-    font-family: "DM Sans", sans-serif;
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-}
-
-.explore-alphabet a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 22px;
-    height: 21px;
-
-    color: var(--muted-text);
-    font-family: "DM Sans", sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    text-decoration: none;
-
-    transition: color 0.2s ease, background 0.2s ease;
-}
-
-.explore-alphabet a:hover {
-    background: var(--forest);
-    color: #fff;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-
 /* BACK TO TOP BUTTON */
 
 .explore-back-to-top {
@@ -453,13 +490,13 @@ body.dark-mode .explore-empty {
     border-color: var(--border);
 }
 
-body.dark-mode .explore-alphabet {
+body.dark-mode .explore-regions {
     background: var(--surface);
     border-color: var(--border);
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
 }
 
-body.dark-mode .explore-alphabet a:hover {
+body.dark-mode .explore-regions a:hover {
     background: var(--accent);
     color: #fff;
 }
@@ -468,14 +505,14 @@ body.dark-mode .explore-alphabet a:hover {
 /* RESPONSIVE */
 
 @media (max-width: 1200px) {
-    .explore-alphabet {
+    .explore-regions {
         right: 8px;
-        padding: 9px 5px;
+        padding: 10px 6px;
+        gap: 3px;
     }
 
-    .explore-alphabet a {
-        width: 19px;
-        height: 19px;
+    .explore-regions a {
+        padding: 4px 6px;
         font-size: 9px;
     }
 }
@@ -488,6 +525,10 @@ body.dark-mode .explore-alphabet a:hover {
 
     .explore-card-image {
         height: 225px;
+    }
+
+    .explore-regions {
+        right: 5px;
     }
 }
 
@@ -543,8 +584,54 @@ body.dark-mode .explore-alphabet a:hover {
         padding-bottom: 0;
     }
 
-    .explore-alphabet {
-        display: none;
+    /* Regional links become a horizontal mobile navigation */
+    .explore-regions {
+        position: static;
+        transform: none;
+
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+
+        max-height: none;
+        overflow: visible;
+
+        margin: 0 0 38px;
+        padding: 12px;
+        border: 1px solid var(--border);
+        box-shadow: none;
+    }
+
+    .explore-regions-label {
+        width: 100%;
+        margin-bottom: 3px;
+    }
+
+    .explore-regions a {
+        padding: 7px 10px;
+        background: var(--page-bg);
+        border: 1px solid var(--border);
+        font-size: 10px;
+    }
+
+    .explore-regions a:hover {
+        background: var(--forest);
+        color: #fff;
+    }
+
+    .explore-region-section {
+        margin-bottom: 55px;
+        scroll-margin-top: 25px;
+    }
+
+    .explore-region-heading {
+        margin-bottom: 22px;
+    }
+
+    .explore-region-heading h3 {
+        font-size: 27px;
     }
 
     .explore-back-to-top {
@@ -572,6 +659,10 @@ body.dark-mode .explore-alphabet a:hover {
 
 /* REDUCED MOTION */
 
+html {
+    scroll-behavior: smooth;
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -579,7 +670,7 @@ body.dark-mode .explore-alphabet a:hover {
 
     .explore-card,
     .explore-card-image img,
-    .explore-alphabet a,
+    .explore-regions a,
     .explore-back-to-top {
         transition: none;
     }

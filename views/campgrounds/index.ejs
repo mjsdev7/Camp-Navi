@@ -1,20 +1,111 @@
-
 <% layout('layouts/boilerplate') %>
 
 <link rel="stylesheet" href="/stylesheets/explore.css">
 
 <%
-    const sortedCampgrounds = [...campgrounds].sort((a, b) =>
-        String(a.title || '').localeCompare(String(b.title || ''), 'en', {
-            sensitivity: 'base'
-        })
-    );
+    const prefectureRegions = {
+        Hokkaido: 'Hokkaido',
 
-    const availableLetters = [...new Set(
-        sortedCampgrounds.map(campground =>
-            String(campground.title || '').trim().charAt(0).toUpperCase()
-        )
-    )].filter(letter => /^[A-Z]$/.test(letter)).sort();
+        Aomori: 'Tohoku',
+        Iwate: 'Tohoku',
+        Miyagi: 'Tohoku',
+        Akita: 'Tohoku',
+        Yamagata: 'Tohoku',
+        Fukushima: 'Tohoku',
+
+        Ibaraki: 'Kanto',
+        Tochigi: 'Kanto',
+        Gunma: 'Kanto',
+        Saitama: 'Kanto',
+        Chiba: 'Kanto',
+        Tokyo: 'Kanto',
+        Kanagawa: 'Kanto',
+
+        Niigata: 'Chubu',
+        Toyama: 'Chubu',
+        Ishikawa: 'Chubu',
+        Fukui: 'Chubu',
+        Yamanashi: 'Chubu',
+        Nagano: 'Chubu',
+        Gifu: 'Chubu',
+        Shizuoka: 'Chubu',
+        Aichi: 'Chubu',
+
+        Mie: 'Kansai',
+        Shiga: 'Kansai',
+        Kyoto: 'Kansai',
+        Osaka: 'Kansai',
+        Hyogo: 'Kansai',
+        Nara: 'Kansai',
+        Wakayama: 'Kansai',
+
+        Tottori: 'Chugoku',
+        Shimane: 'Chugoku',
+        Okayama: 'Chugoku',
+        Hiroshima: 'Chugoku',
+        Yamaguchi: 'Chugoku',
+
+        Tokushima: 'Shikoku',
+        Kagawa: 'Shikoku',
+        Ehime: 'Shikoku',
+        Kochi: 'Shikoku',
+
+        Fukuoka: 'Kyushu',
+        Saga: 'Kyushu',
+        Nagasaki: 'Kyushu',
+        Kumamoto: 'Kyushu',
+        Oita: 'Kyushu',
+        Miyazaki: 'Kyushu',
+        Kagoshima: 'Kyushu',
+
+        Okinawa: 'Okinawa'
+    };
+
+    const regionOrder = [
+        'Hokkaido',
+        'Tohoku',
+        'Kanto',
+        'Chubu',
+        'Kansai',
+        'Chugoku',
+        'Shikoku',
+        'Kyushu',
+        'Okinawa'
+    ];
+
+    const groupedCampgrounds = {};
+
+    for (const campground of campgrounds) {
+        const location = String(campground.location || '');
+        const prefecture = location.split(',')[0].split('/')[0].trim();
+        const region = prefectureRegions[prefecture] || 'Other';
+
+        if (!groupedCampgrounds[region]) {
+            groupedCampgrounds[region] = [];
+        }
+
+        groupedCampgrounds[region].push(campground);
+    }
+
+    const regionGroups = regionOrder
+        .filter(region => groupedCampgrounds[region])
+        .map(region => ({
+            name: region,
+            id: `region-${region.toLowerCase()}`,
+            campgrounds: groupedCampgrounds[region].sort((a, b) =>
+                String(a.title || '').localeCompare(String(b.title || ''), 'en', {
+                    sensitivity: 'base'
+                })
+            )
+        }));
+
+    if (groupedCampgrounds.Other) {
+        regionGroups.push({
+            name: 'Other',
+            id: 'region-other',
+            campgrounds: groupedCampgrounds.Other
+        });
+    }
 %>
 
 <div class="explore-page" id="top">
@@ -53,14 +144,15 @@
         <div class="explore-section-heading">
             <div>
                 <span class="explore-eyebrow">THE COLLECTION</span>
-                <h2>All campgrounds</h2>
+                <h2>Explore by region</h2>
             </div>
+
             <span class="explore-count">
                 <%= campgrounds.length %> places to discover
             </span>
         </div>
 
-        <% if (sortedCampgrounds.length === 0) { %>
+        <% if (regionGroups.length === 0) { %>
 
             <div class="explore-empty">
                 <h3>Your next adventure starts here.</h3>
@@ -72,95 +164,104 @@
 
         <% } else { %>
 
-            <div class="explore-grid">
+            <!-- Regional navigation -->
+            <nav class="explore-regions" aria-label="Jump to a region">
+                <span class="explore-regions-label">REGIONS</span>
 
-                <%
-                    let previousLetter = '';
-
-                    for (let i = 0; i < sortedCampgrounds.length; i++) {
-                        const campground = sortedCampgrounds[i];
-                        const firstLetter = String(campground.title || '')
-                            .trim()
-                            .charAt(0)
-                            .toUpperCase();
-
-                        const isFirstOfLetter = firstLetter !== previousLetter;
-                        previousLetter = firstLetter;
-                %>
-
-                    <article
-                        class="explore-card"
-                        <% if (isFirstOfLetter && /^[A-Z]$/.test(firstLetter)) { %>
-                            id="letter-<%= firstLetter %>"
-                        <% } %>
-                    >
-
-                        <a
-                            href="/campgrounds/<%= campground._id %>"
-                            class="explore-card-image-link"
-                        >
-                            <div class="explore-card-image">
-
-                                <% if (campground.images && campground.images.length > 0) { %>
-
-                                    <img
-                                        src="<%= campground.images[0].url %>"
-                                        alt="<%= campground.title %>"
-                                        loading="lazy"
-                                    >
-
-                                <% } else { %>
-
-                                    <div class="explore-image-placeholder">
-                                        <span>CAMPNAVI</span>
-                                    </div>
-
-                                <% } %>
-
-                                <span class="explore-card-label">CAMPGROUND</span>
-
-                            </div>
-                        </a>
-
-                        <div class="explore-card-content">
-
-                            <span class="explore-card-location">
-                                <%= campground.location %>
-                            </span>
-
-                            <h3>
-                                <a href="/campgrounds/<%= campground._id %>">
-                                    <%= campground.title %>
-                                </a>
-                            </h3>
-
-                            <p>
-                                <%= campground.description %>
-                            </p>
-
-                            <a
-                                href="/campgrounds/<%= campground._id %>"
-                                class="explore-card-link"
-                            >
-                                Discover campground <span>→</span>
-                            </a>
-
-                        </div>
-
-                    </article>
-
-                <% } %>
-
-            </div>
-
-            <!-- Alphabetical navigation -->
-            <nav class="explore-alphabet" aria-label="Jump to campground alphabetically">
-                <span class="explore-alphabet-label">INDEX</span>
-
-                <% availableLetters.forEach(letter => { %>
-                    <a href="#letter-<%= letter %>"><%= letter %></a>
+                <% regionGroups.forEach(region => { %>
+                    <a href="#<%= region.id %>">
+                        <%= region.name %>
+                    </a>
                 <% }) %>
             </nav>
+
+            <!-- Regional campground sections -->
+            <% regionGroups.forEach(region => { %>
+
+                <section
+                    class="explore-region-section"
+                    id="<%= region.id %>"
+                >
+
+                    <div class="explore-region-heading">
+                        <div>
+                            <span class="explore-eyebrow">DISCOVER JAPAN</span>
+                            <h3><%= region.name %></h3>
+                        </div>
+
+                        <span class="explore-region-count">
+                            <%= region.campgrounds.length %>
+                            <%= region.campgrounds.length === 1 ? 'campground' : 'campgrounds' %>
+                        </span>
+                    </div>
+
+                    <div class="explore-grid">
+
+                        <% region.campgrounds.forEach(campground => { %>
+
+                            <article class="explore-card">
+
+                                <a
+                                    href="/campgrounds/<%= campground._id %>"
+                                    class="explore-card-image-link"
+                                >
+                                    <div class="explore-card-image">
+
+                                        <% if (campground.images && campground.images.length > 0) { %>
+
+                                            <img
+                                                src="<%= campground.images[0].url %>"
+                                                alt="<%= campground.title %>"
+                                                loading="lazy"
+                                            >
+
+                                        <% } else { %>
+
+                                            <div class="explore-image-placeholder">
+                                                <span>CAMPNAVI</span>
+                                            </div>
+
+                                        <% } %>
+
+                                        <span class="explore-card-label">CAMPGROUND</span>
+
+                                    </div>
+                                </a>
+
+                                <div class="explore-card-content">
+
+                                    <span class="explore-card-location">
+                                        <%= campground.location %>
+                                    </span>
+
+                                    <h3>
+                                        <a href="/campgrounds/<%= campground._id %>">
+                                            <%= campground.title %>
+                                        </a>
+                                    </h3>
+
+                                    <p>
+                                        <%= campground.description %>
+                                    </p>
+
+                                    <a
+                                        href="/campgrounds/<%= campground._id %>"
+                                        class="explore-card-link"
+                                    >
+                                        Discover campground <span>→</span>
+                                    </a>
+
+                                </div>
+
+                            </article>
+
+                        <% }) %>
+
+                    </div>
+
+                </section>
+
+            <% }) %>
 
         <% } %>
 
